@@ -27,3 +27,12 @@ def test_initial_product_catalog_is_complete() -> None:
 
 def test_initial_output_catalog_is_complete() -> None:
     assert template_ids("outputs") == {"ecommerce", "social"}
+
+
+def test_initial_style_catalog_is_complete() -> None:
+    assert template_ids("styles") == {
+        "sage-minimal-flatlay",
+        "clean-white-studio",
+        "warm-beige-editorial",
+        "dark-luxury-jewelry",
+    }

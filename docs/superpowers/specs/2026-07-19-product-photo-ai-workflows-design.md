@@ -40,6 +40,8 @@ The repository uses a shared core plus platform adapters, product modules, style
 
 Primary users are product photographers, small shops, social-media teams, and independent sellers who already know how to arrange and photograph products but need a reliable workflow for AI-assisted background replacement.
 
+The repository must also speak credibly to organizations whose product imagery is a core commercial asset, including fashion brands, apparel and accessories retailers, jewelry businesses, ecommerce teams, creative studios, agencies, and in-house content teams. The presentation should reflect the care these users bring to styling, material detail, color accuracy, brand consistency, and visual merchandising.
+
 Initial product categories are:
 
 - garments;
@@ -417,21 +419,81 @@ Image fidelity cannot be established by schema validation alone. `tests/manual-t
 
 Each Product Module has a representative case description under `tests/cases/`. Test assets are referenced only when their redistribution rights are documented. A platform-specific workflow is considered tested only for capabilities actually available in that interface at the test date. Unsupported capabilities are recorded explicitly rather than counted as passes or silently redirected to another platform.
 
-## 21. Documentation and Localization
+## 21. README Experience and Editorial Standard
+
+The README is part of the product, not an administrative afterthought. It must feel polished, trustworthy, visually considered, and ready to share with an individual creator, a fashion business, or a professional creative team.
+
+### 21.1 Positioning
+
+The README positions the project as a practical production workflow for people and organizations that care deeply about product presentation. Fashion, garments, textiles, jewelry, and accessories are the leading use cases because small visual errors in folds, seams, texture, stones, clasps, metal finish, color, or styling can reduce trust and commercial value.
+
+The project promise is not generic AI beautification. It is controlled background transformation with product fidelity as the primary constraint.
+
+### 21.2 Tone
+
+The editorial voice is:
+
+- professional without sounding corporate or distant;
+- visually literate and attentive to craft;
+- clear enough for an independent seller without technical experience;
+- credible to photographers, art directors, ecommerce teams, and fashion brands;
+- confident but never exaggerated about model reliability;
+- respectful of the time, brand standards, and commercial risk of the user.
+
+Avoid hype, vague claims such as “perfect results,” excessive AI jargon, and a developer-first opening that makes non-technical users feel the repository is not for them.
+
+### 21.3 Required README Narrative
+
+The canonical English README follows this reader journey:
+
+1. **Hero and promise** — project name, concise commercial value proposition, and a visual example that immediately communicates faithful product-background editing.
+2. **The problem** — explain why ordinary “change the background” prompting often alters products, colors, folds, logos, stones, clasps, or reflections.
+3. **Who it is for** — explicitly name individual sellers, fashion brands, apparel and accessories retailers, jewelry businesses, studios, agencies, and ecommerce teams.
+4. **What makes the workflow different** — Product Lock, source-first regeneration, reference isolation, Safe Run, Fast Run, and QA/Repair.
+5. **How it works** — a short visual flow from reference and source images to lock, edit, QA, and repair.
+6. **Quick start** — a low-friction path that gets a first result without requiring the reader to understand the repository architecture.
+7. **Platform paths** — clear choices for ChatGPT, Gemini, and Claude, with honest capability notes.
+8. **Product and style coverage** — show initial Product Modules, Output Profiles, and Style Cards in a scan-friendly format.
+9. **Examples** — licensed before/reference/after cases with lock sheets and QA outcomes, emphasizing fashion and accessories.
+10. **Use in a business workflow** — explain consistent ecommerce imagery, social variants, review responsibilities, privacy considerations, and known limits.
+11. **Extend the library** — show how to add a template without editing the core.
+12. **Contribute and license** — provide a welcoming contribution path and a concise explanation of MIT reuse rights.
+
+### 21.4 Visual and Content Quality
+
+The README should use restrained, editorial presentation rather than decorative clutter. Visual examples must be large enough to judge fabric texture, jewelry geometry, product edges, and shadow behavior. Captions must identify source, style reference, output profile, platform and test date, and QA status.
+
+Screenshots, diagrams, badges, and tables are included only when they help a non-technical reader understand or trust the workflow. The opening section must not be dominated by build tools, schema details, validation commands, or contribution mechanics.
+
+The README must make the limitations visible without undermining the product: AI output requires review, platforms differ, and the workflow reduces rather than eliminates fidelity risk.
+
+### 21.5 Acceptance Criteria
+
+The README is ready when:
+
+- a first-time fashion seller can understand the value and run the first workflow without reading internal architecture docs;
+- a professional team can identify the fidelity controls, review process, platform limits, asset-rights policy, and extension model;
+- fashion and accessories examples demonstrate attention to folds, seams, texture, color, stones, clasps, metal finish, edges, reflections, and shadows;
+- all featured images have documented redistribution rights;
+- English copy has been edited for clarity, rhythm, consistency, and international readability;
+- the Vietnamese README preserves the same positioning, care, and practical meaning rather than acting as a shortened summary;
+- every major claim is supported by the documented workflow or a reproducible example.
+
+## 22. Documentation and Localization
 
 - `README.md` is canonical English documentation.
-- `README.vi.md` provides a complete Vietnamese introduction and usage path.
+- `README.vi.md` provides a complete Vietnamese introduction and usage path with the same professional positioning and audience focus as the canonical README.
 - `QUICKSTART.md` is concise English and links to platform-specific setup.
 - Platform prompts and templates are authored canonically in English for portability.
 - Vietnamese guidance may explain usage but must not silently diverge from canonical workflow behavior.
 
-## 22. Contribution Model
+## 23. Contribution Model
 
 Contributors copy the relevant `_template.md`, choose a unique ID, complete metadata and required sections, add a small reproducible test case where possible, run the validator, and open a pull request.
 
 Changes to Product Lock or workflow precedence require broader review because they affect every platform and template. New style cards or product modules should not require core changes.
 
-## 23. Version 1 Release Criteria
+## 24. Version 1 Release Criteria
 
 Version 1 is complete when:
 
@@ -442,11 +504,12 @@ Version 1 is complete when:
 - all four initial Style Cards pass schema validation;
 - the validator passes on the entire repository;
 - English and Vietnamese documentation are consistent;
+- the README satisfies the audience, narrative, visual-quality, and editorial acceptance criteria in this specification;
 - example assets have documented redistribution rights;
 - the manual test matrix records platform, date, capability, case, and outcome;
 - GitHub Actions passes the repository validator;
 - no critical placeholders, broken internal links, or contradictory instructions remain.
 
-## 24. Future Expansion
+## 25. Future Expansion
 
 Future versions may add Product Cleanup, Shadow Creation, Color Variations, Social Media Adaptation, API automation, or a local application. These are separate modules and must not weaken the Version 1 product-fidelity contract.

@@ -1,5 +1,7 @@
 # ChatGPT Setup
 
+**English** · [Tiếng Việt](setup.vi.md)
+
 Choose the path that matches how often you use the workflow. No API key is required; both paths run in the ChatGPT interface.
 
 ## Path 1 — Instant Run

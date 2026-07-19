@@ -1,5 +1,7 @@
 # Gemini Setup
 
+**English** · [Tiếng Việt](setup.vi.md)
+
 Choose Instant Run for occasional work or install a custom Gem for repeated batches. Both paths run in the Gemini interface and require no API key.
 
 ## Path 1 — Instant Run

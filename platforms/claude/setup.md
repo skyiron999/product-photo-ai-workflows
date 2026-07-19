@@ -1,5 +1,7 @@
 # Claude Setup
 
+**English** · [Tiếng Việt](setup.vi.md)
+
 Claude can always perform the visual analysis and workflow assembly stages when it can read the uploads. Raster editing depends on the tools exposed in the user's current Claude interface, so verify capability at runtime.
 
 ## Path 1 — Instant Run

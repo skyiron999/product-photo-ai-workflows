@@ -5,6 +5,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 PLATFORM_FILES = {
     "setup.md",
+    "setup.vi.md",
     "instant-run.md",
     "installed-instructions.md",
     "limitations.md",

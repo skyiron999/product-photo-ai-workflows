@@ -4,7 +4,7 @@
 
 Thay nền cho ảnh flat-lay hoặc tabletop theo cách có kiểm soát, đồng thời bảo vệ những gì khách hàng thật sự mua: phom dáng, cấu tạo, màu sắc, chất liệu, linh kiện và dấu hiệu nhận diện của chính sản phẩm.
 
-[English](README.md) · [Bắt đầu trong 5 phút](QUICKSTART.md) · [Quy tắc kiểm thử thủ công](tests/manual-test-matrix.md)
+[English](README.md) · [Bắt đầu trong 5 phút](QUICKSTART.vi.md) · [Quy tắc kiểm thử thủ công](tests/manual-test-matrix.md)
 
 Đây là một bộ workflow mở, dạng module, dùng trực tiếp trong giao diện ChatGPT, Gemini và Claude. Bạn không cần API, không cần server chứa ảnh, cũng không phải đổi tên file theo một quy tắc rườm rà. Có thể dùng ngay bằng cách dán prompt Instant Run, hoặc cài một lần thành Custom GPT, Gem hay Claude Project để xử lý lặp lại.
 
@@ -66,7 +66,7 @@ Sau khi tạo ảnh, workflow trả về `PASS`, `WARN`, `FAIL` hoặc `MANUAL R
 
 ## Bắt đầu nhanh
 
-Xem hướng dẫn ngắn nhất tại [QUICKSTART.md](QUICKSTART.md).
+Xem hướng dẫn tiếng Việt tại [QUICKSTART.vi.md](QUICKSTART.vi.md).
 
 Quy trình hội thoại cơ bản:
 

@@ -1,5 +1,7 @@
 # Quickstart
 
+**English** · [Tiếng Việt](QUICKSTART.vi.md)
+
 Your first controlled product-background edit takes seven decisions, not a custom technical setup.
 
 ## 1. Choose a platform

@@ -45,3 +45,29 @@ def test_quickstart_links_all_platforms() -> None:
     text = (ROOT / "QUICKSTART.md").read_text(encoding="utf-8")
     for platform in ("chatgpt", "gemini", "claude"):
         assert f"platforms/{platform}/setup.md" in text
+
+
+def test_vietnamese_quickstart_links_vietnamese_platform_guides() -> None:
+    text = (ROOT / "QUICKSTART.vi.md").read_text(encoding="utf-8")
+    for platform in ("chatgpt", "gemini", "claude"):
+        assert f"platforms/{platform}/setup.vi.md" in text
+
+
+def test_each_platform_has_a_complete_vietnamese_setup_guide() -> None:
+    for platform in ("chatgpt", "gemini", "claude"):
+        english = (ROOT / f"platforms/{platform}/setup.md").read_text(
+            encoding="utf-8"
+        )
+        vietnamese = (ROOT / f"platforms/{platform}/setup.vi.md").read_text(
+            encoding="utf-8"
+        )
+        assert len(vietnamese) >= len(english) * 0.65
+        assert "Tiếng Việt" in vietnamese
+        assert "instant-run.md" in vietnamese
+
+
+def test_quickstarts_link_to_each_other() -> None:
+    english = (ROOT / "QUICKSTART.md").read_text(encoding="utf-8")
+    vietnamese = (ROOT / "QUICKSTART.vi.md").read_text(encoding="utf-8")
+    assert "QUICKSTART.vi.md" in english
+    assert "QUICKSTART.md" in vietnamese

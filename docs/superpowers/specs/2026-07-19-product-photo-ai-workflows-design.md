@@ -32,7 +32,7 @@ The repository uses a shared core plus platform adapters, product modules, style
 - A standalone web application, desktop application, or Python image-generation application.
 - Cloud asset storage.
 - Background removal as a standalone transparent-cutout product.
-- Virtual try-on, model replacement, product redesign, colorway generation, video generation, or 3D generation.
+- Ghost mannequin, on-model editing, virtual try-on, model replacement, product redesign, colorway generation, video generation, or 3D generation.
 - Guaranteed feature parity across AI platforms.
 - Training, fine-tuning, or running local image models.
 
@@ -49,6 +49,8 @@ Initial product categories are:
 - earrings;
 - bracelets;
 - reflective accessories, including metal, stones, glass, and polished surfaces.
+
+Version 1 is optimized for flat-lay and tabletop product photography. Ghost mannequin and on-model imagery require separate identity, body-proportion, skin-edge, and garment-occlusion controls and are deferred to a later version.
 
 ## 5. Product Principles
 
@@ -71,6 +73,20 @@ Users identify images by role in the chat, not by renaming files. The standard i
 1. Attach a reference image with `Use this image as the style reference only.`
 2. Attach a product image with `Edit this product image.`
 3. Choose a run mode and output profile.
+
+### 5.5 Product color is isolated from background grading
+
+Preserve the product's perceptual color relative to the original source. Background color grading, contrast, saturation, and temperature changes must not spill onto the product. Do not claim or infer exact Hex/RGB values from an ordinary photograph; use numeric color values only when the user supplies calibrated values or a calibrated color reference.
+
+### 5.6 Canvas changes must not rescale or crop the product
+
+Preserve product proportions, geometry, and relative scale. The default output keeps the source canvas ratio. When a user requests another aspect ratio, extend the background before considering any crop, and never enlarge, squeeze, stretch, or crop the product to fill the frame.
+
+For ecommerce outputs, target a safe padding of at least 15% between the product's outermost visible edge and the canvas edge when the source and requested canvas allow it. Treat 15% as a production target, not a reason to alter the product or fabricate missing product detail.
+
+### 5.7 Reference typography is never style input
+
+Exclude all text, logos, brand marks, watermarks, captions, labels, and typographic decoration from style extraction. Output remains text-free unless the user supplies exact text and explicitly requests it. Product text and logos in the source remain protected product details.
 
 ## 6. Repository Architecture
 
@@ -142,12 +158,15 @@ product-photo-ai-workflows/
 │
 ├── tests/
 │   ├── manual-test-matrix.md
-│   └── cases/
+│   ├── cases/
 │       ├── garments.md
 │       ├── fabric.md
 │       ├── earrings.md
 │       ├── bracelets.md
 │       └── reflective-accessories.md
+│   └── synthetic_cases/
+│       ├── README.md
+│       └── manifest.md
 │
 └── tools/
     └── validate_templates.py
@@ -298,7 +317,9 @@ Priorities:
 - faithful product representation;
 - restrained background and props;
 - clean silhouette and realistic grounding;
-- consistent crop and adequate padding;
+- preserve the source canvas ratio by default;
+- when another aspect ratio is requested, extend background rather than crop or rescale the product;
+- target at least 15% safe padding from the product's outermost edge to the canvas edge when possible without altering product geometry;
 - no generated text or watermark;
 - minimal creative reinterpretation.
 
@@ -309,6 +330,7 @@ Priorities:
 - faithful product representation remains mandatory;
 - stronger mood and art direction are allowed in the background;
 - composition may reserve negative space for later copy;
+- ratio changes use background expansion first and never distort or crop the product;
 - no generated copy unless the user explicitly supplies exact text;
 - props remain opt-in and may never be copied accidentally from the reference.
 
@@ -367,6 +389,7 @@ After the first failure, use the relevant repair command. After a second failure
 - **Missing reference:** ask whether to use a Style Card alone or wait for a reference image.
 - **Missing target:** request the product image and do not generate.
 - **Ambiguous image roles:** ask one short clarification question.
+- **Simultaneous unlabeled uploads:** describe each image using observable visual features, propose a role mapping, and require confirmation before editing. Do not use a numeric confidence threshold or infer roles solely from whether a background looks plain or decorative.
 - **Multiple targets:** confirm that each will be processed independently; do not create a collage unless explicitly requested.
 - **Multiple products in one target:** pause when a single product cannot be isolated confidently.
 - **Unreadable critical detail:** use `WARN` in Safe Run or pause Fast Run.
@@ -418,6 +441,8 @@ GitHub Actions runs the validator for every pull request and push to the default
 Image fidelity cannot be established by schema validation alone. `tests/manual-test-matrix.md` records the platform, plan or feature surface, date tested, source case, workflow mode, output profile, result status, and reviewer notes.
 
 Each Product Module has a representative case description under `tests/cases/`. Test assets are referenced only when their redistribution rights are documented. A platform-specific workflow is considered tested only for capabilities actually available in that interface at the test date. Unsupported capabilities are recorded explicitly rather than counted as passes or silently redirected to another platform.
+
+`tests/synthetic_cases/` provides a supplemental controlled layer using owned, generated, or compatibly licensed transparent product cutouts. These cases isolate edge integration, contact shadows, and background-light harmonization. They do not replace real photographed-source tests, because pre-cut assets do not exercise source-background separation, real capture noise, white balance, occlusion, or difficult natural edges.
 
 ## 21. README Experience and Editorial Standard
 
@@ -487,6 +512,17 @@ The README is ready when:
 - Platform prompts and templates are authored canonically in English for portability.
 - Vietnamese guidance may explain usage but must not silently diverge from canonical workflow behavior.
 
+Canonical Vietnamese terminology:
+
+| English | Vietnamese |
+|---|---|
+| Product Fidelity | Độ trung thực sản phẩm |
+| Product Lock | Khóa toàn vẹn sản phẩm |
+| Silhouette | Phom dáng và đường biên sản phẩm |
+| Contact Shadow | Bóng tiếp xúc |
+| Specular Highlights | Vùng bắt sáng bề mặt |
+| Color Drift | Sai lệch màu sản phẩm |
+
 ## 23. Contribution Model
 
 Contributors copy the relevant `_template.md`, choose a unique ID, complete metadata and required sections, add a small reproducible test case where possible, run the validator, and open a pull request.
@@ -501,15 +537,22 @@ Version 1 is complete when:
 - Safe Run, Fast Run, repair, and reset behavior are documented and tested wherever the platform exposes the required image-editing capability;
 - all five Product Modules pass at least one representative test case;
 - both Output Profiles are tested from the same source without derivative chaining;
+- at least one ratio-change test confirms that background expansion preserves product geometry and avoids product cropping or rescaling;
+- at least one ecommerce test evaluates the 15% safe-padding target;
+- at least one reference containing text, a logo, or a watermark confirms that reference typography is not reproduced;
+- at least one color-sensitive case verifies that background grading does not visibly shift product color;
 - all four initial Style Cards pass schema validation;
 - the validator passes on the entire repository;
 - English and Vietnamese documentation are consistent;
 - the README satisfies the audience, narrative, visual-quality, and editorial acceptance criteria in this specification;
 - example assets have documented redistribution rights;
 - the manual test matrix records platform, date, capability, case, and outcome;
+- real photographed-source and supplemental synthetic-cutout results are recorded separately;
 - GitHub Actions passes the repository validator;
 - no critical placeholders, broken internal links, or contradictory instructions remain.
 
 ## 25. Future Expansion
 
 Future versions may add Product Cleanup, Shadow Creation, Color Variations, Social Media Adaptation, API automation, or a local application. These are separate modules and must not weaken the Version 1 product-fidelity contract.
+
+Ghost mannequin and on-model workflows require their own specification and test suite before inclusion. An optional Prompt Exporter may be explored later, but it must be user-triggered, disclose model portability limits, and never become an automatic cross-platform redirect.

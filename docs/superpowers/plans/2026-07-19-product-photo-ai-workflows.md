@@ -14,9 +14,15 @@
 - License: MIT.
 - English is canonical; `README.vi.md` must preserve the same positioning and practical meaning.
 - Version 1 implements only product-photo background replacement.
+- Version 1 is optimized for flat-lay and tabletop product photography; ghost mannequin and on-model workflows are deferred.
 - The original product source outranks all style and user-level creative requests.
 - Every output and repair starts from the original product source, never from a generated derivative.
+- Product color grading is isolated from background grading; do not infer exact Hex/RGB values without calibrated user input.
+- Preserve the source canvas ratio by default; requested ratio changes extend the background before any crop and never rescale or distort the product.
+- Ecommerce targets at least 15% safe padding when possible without altering product geometry.
+- Reference text, logos, brand marks, watermarks, captions, and typographic decoration are excluded from style extraction.
 - Users identify images by chat role; filenames must not be required or standardized.
+- Simultaneous unlabeled uploads require a proposed role mapping and user confirmation; do not use pseudo-precise confidence percentages.
 - Each platform workflow is self-contained and must not silently redirect the user to another platform.
 - Initial products: garments, fabric, earrings, bracelets, and reflective accessories.
 - Initial styles: sage minimal flat lay, clean white studio, warm beige editorial, and dark luxury jewelry.
@@ -38,6 +44,7 @@
 | `outputs/` | Ecommerce and social composition constraints |
 | `examples/` | Redistributable end-to-end examples with provenance and QA evidence |
 | `tests/cases/` | Manual visual test case definitions for each product category |
+| `tests/synthetic_cases/` | Supplemental controlled cutout tests for edges, contact shadows, and lighting integration |
 | `tools/validate_templates.py` | Repository schema, contract, link, and placeholder validation |
 | `tests/` | Automated validator and documentation-contract tests |
 | `.github/workflows/validate.yml` | Pull-request and main-branch validation |
@@ -589,6 +596,19 @@ def test_repair_loop_is_source_first_and_bounded() -> None:
     assert "original product source" in repair
     assert "never repair from a generated output" in repair
     assert "MANUAL REVIEW" in repair
+
+
+def test_product_lock_protects_color_without_claiming_uncalibrated_hex() -> None:
+    text = (ROOT / "core/product-lock.md").read_text(encoding="utf-8")
+    assert "background grading must not alter product color" in text
+    assert "do not infer exact Hex or RGB values" in text
+
+
+def test_protocol_confirms_unlabeled_image_roles() -> None:
+    text = (ROOT / "core/workflow-protocol.md").read_text(encoding="utf-8")
+    assert "simultaneous unlabeled uploads" in text
+    assert "require confirmation before editing" in text
+    assert "do not report a numeric confidence percentage" in text
 ```
 
 - [ ] **Step 2: Run the core tests and verify failure**
@@ -605,8 +625,8 @@ Expected: failure because `core/` does not exist.
 
 Use these exact responsibilities and clauses:
 
-- `product-lock.md`: declare the original source authoritative; lock geometry, silhouette, arrangement, color, material, construction, text, logos, patterns, product counts, jewelry components, and identity details; explicitly prohibit copying products or props from the reference.
-- `workflow-protocol.md`: define intake, product analysis, lock, style extraction, render brief, edit, QA, repair, reset, precedence, and every canonical short command.
+- `product-lock.md`: declare the original source authoritative; lock geometry, silhouette, arrangement, color, material, construction, text, logos, patterns, product counts, jewelry components, and identity details; explicitly prohibit copying products or props from the reference. Include the literal clauses `background grading must not alter product color` and `do not infer exact Hex or RGB values from an ordinary photograph without calibrated user input`.
+- `workflow-protocol.md`: define intake, product analysis, lock, style extraction, render brief, edit, QA, repair, reset, precedence, and every canonical short command. For `simultaneous unlabeled uploads`, describe each image using observable features, propose roles, `require confirmation before editing`, and `do not report a numeric confidence percentage`.
 - `safe-run.md`: require a visible lock sheet with `Product detected`, `Locked`, `Style extracted`, `Excluded from reference`, and `Risks`; wait for `CONTINUE`.
 - `fast-run.md`: perform the same analysis internally; pause on ambiguous roles, multiple inseparable products, unreadable critical details, geometry conflicts, or unavailable platform capability.
 - `repair-loop.md`: include the literal clauses `Return to the original product source.` and `Never repair from a generated output.`; allow one targeted repair, then Safe Run, then `MANUAL REVIEW`.
@@ -730,9 +750,9 @@ Every output file contains `## Purpose`, `## Composition`, `## Constraints`, and
 
 For both publishable outputs, set `kind: output`, set `recommended_for` to all five initial Product Module IDs, set `outputs` to a one-item list containing the profile's own ID, and set all three platforms in `compatible_with`.
 
-`ecommerce.md` requires faithful representation, restrained background, clean silhouette, realistic grounding, consistent crop, adequate padding, no generated text, no watermark, and minimal reinterpretation.
+`ecommerce.md` requires faithful representation, restrained background, clean silhouette, realistic grounding, no generated text, no watermark, and minimal reinterpretation. Preserve the source canvas ratio by default. When another ratio is requested, expand only the background before considering crop; never rescale, distort, or crop the product. Target at least 15% safe padding from the product's outermost edge when possible without altering product geometry.
 
-`social.md` keeps Product Lock mandatory, permits stronger background mood, allows negative space, prohibits invented copy, and makes props opt-in.
+`social.md` keeps Product Lock mandatory, permits stronger background mood, allows negative space, prohibits invented copy, and makes props opt-in. Ratio changes expand background first and never distort or crop the product.
 
 `outputs/_template.md` documents the same contract with contributor tokens.
 
@@ -812,7 +832,7 @@ Use these canonical visual definitions:
 - `warm-beige-editorial`: warm beige matte surface; gentle directional light; low-to-medium contrast; tactile fashion-editorial mood; props only when explicitly requested.
 - `dark-luxury-jewelry`: charcoal-to-black controlled surface; precise specular highlights; realistic reflections; luxury presentation; protect stone transparency and metal color.
 
-Every `Preserve` section states that style cannot alter the product. Every `Avoid` section excludes products, props, labels, logos, typography, and watermarks from the reference unless explicitly requested.
+Every `Preserve` section states that style cannot alter the product. Every `Avoid` section excludes all reference text, logos, brand marks, watermarks, captions, labels, typographic decoration, products, and props. Output remains text-free unless the user supplies exact text and explicitly requests it.
 
 - [ ] **Step 4: Add contributor style template**
 
@@ -897,6 +917,7 @@ Link to the official Custom GPT and ChatGPT Images documentation. State that cre
 - assign image roles from the user's messages rather than filenames;
 - implement precedence, source-first editing, Safe/Fast Run, output profiles, QA, repair limits, and reset behavior;
 - auto-detect a product category and ask one short question only when ambiguous;
+- when multiple images arrive unlabeled, propose a role mapping from observable features and require confirmation without claiming a numeric confidence score;
 - never copy products or props from the reference;
 - produce one independent output per target and never create a collage unless requested.
 
@@ -964,6 +985,8 @@ Expected: Gemini-specific tests fail because its package is absent.
 
 Mirror shared behavior without mentioning ChatGPT-specific controls. Explicitly support one reference plus one or more uploaded target images, process targets independently, and preserve the user's role messages. Include the literal clause `do not require renamed files`.
 
+For simultaneous unlabeled uploads, propose the role mapping and require confirmation before editing. Do not classify roles solely from plain-versus-decorative backgrounds.
+
 - [ ] **Step 5: Run tests, validation, and commit**
 
 ```bash
@@ -1022,6 +1045,8 @@ Expected: Claude tests fail because its package is absent.
 
 `limitations.md` states the image-editing capability must be checked in the user's current interface. When unavailable, Claude may still perform reference analysis, Product Lock creation, prompt assembly, and QA, but must not pretend a raster edit occurred and must not silently move the user to another platform.
 
+Do not add an automatic Prompt Exporter or one-click redirect to another model in Version 1. Any future export command must be user-triggered and disclose that prompts are not behaviorally portable across image models.
+
 - [ ] **Step 4: Write capability-aware Claude instructions**
 
 The instructions follow the full core pipeline when applicable tools are available. Include this exact rule:
@@ -1053,6 +1078,8 @@ git commit -m "feat: add Claude workflow package"
 - Create: `tests/cases/earrings.md`
 - Create: `tests/cases/bracelets.md`
 - Create: `tests/cases/reflective-accessories.md`
+- Create: `tests/synthetic_cases/README.md`
+- Create: `tests/synthetic_cases/manifest.md`
 - Create: `examples/sage-minimal-flatlay/README.md`
 - Create: `examples/sage-minimal-flatlay/assembled-prompt.md`
 - Create: `examples/sage-minimal-flatlay/lock-sheet.md`
@@ -1094,6 +1121,14 @@ def test_example_records_asset_provenance() -> None:
     text = (ROOT / "examples/sage-minimal-flatlay/README.md").read_text(encoding="utf-8")
     assert "Asset provenance" in text
     assert "Redistribution license" in text
+
+
+def test_synthetic_cases_are_supplemental_and_rights_checked() -> None:
+    readme = (ROOT / "tests/synthetic_cases/README.md").read_text(encoding="utf-8")
+    manifest = (ROOT / "tests/synthetic_cases/manifest.md").read_text(encoding="utf-8")
+    assert "supplemental" in readme.lower()
+    assert "do not replace real photographed-source tests" in readme
+    assert "Redistribution license" in manifest
 ```
 
 - [ ] **Step 2: Run tests and verify failure**
@@ -1123,6 +1158,10 @@ Each case defines:
 - failure conditions;
 - asset-rights requirement.
 
+Create `tests/synthetic_cases/README.md` to define transparent cutouts as a supplemental control for edge integration, contact shadows, and background-light harmonization. State exactly: `These cases do not replace real photographed-source tests.`
+
+Create `tests/synthetic_cases/manifest.md` with columns for Asset, Product category, Source type, Creator, Source URL or generation record, Redistribution license, Edge characteristics, and Intended checks. Do not add an asset until every provenance field is complete.
+
 - [ ] **Step 4: Create the example documentation contract without unlicensed images**
 
 `examples/sage-minimal-flatlay/README.md` explains that image files are added only after ownership or compatible licensing is verified. It includes `Asset provenance`, `Redistribution license`, platform, test date, source role, reference role, output profile, and QA status.
@@ -1134,7 +1173,7 @@ The assembled prompt, lock sheet, and QA report use a clearly labeled synthetic 
 ```bash
 python -m pytest -v
 python tools/validate_templates.py .
-git add tests/manual-test-matrix.md tests/cases examples tests/test_manual_test_contract.py
+git add tests/manual-test-matrix.md tests/cases tests/synthetic_cases examples tests/test_manual_test_contract.py
 git commit -m "test: add visual workflow evaluation matrix"
 ```
 
@@ -1231,6 +1270,17 @@ Include:
 - [ ] **Step 4: Write complete Vietnamese README**
 
 Translate meaning and positioning, not sentence order mechanically. Preserve the professional, visually literate tone and the same practical coverage. Use familiar Vietnamese terms for product photography while retaining canonical command names in English.
+
+Use this canonical glossary consistently:
+
+```text
+Product Fidelity → Độ trung thực sản phẩm
+Product Lock → Khóa toàn vẹn sản phẩm
+Silhouette → Phom dáng và đường biên sản phẩm
+Contact Shadow → Bóng tiếp xúc
+Specular Highlights → Vùng bắt sáng bề mặt
+Color Drift → Sai lệch màu sản phẩm
+```
 
 - [ ] **Step 5: Write the concise English Quickstart**
 
@@ -1378,6 +1428,15 @@ Expected: no whitespace errors and no unresolved publishable placeholders. Contr
 
 For each available platform surface, run at least one Safe Run and one Fast Run using assets with documented rights. Record platform, surface, date, case, mode, output, status, and reviewer notes. Mark unavailable capabilities as `UNSUPPORTED`, never `PASS`.
 
+Run both real photographed-source cases and the supplemental transparent-cutout cases. Do not treat a synthetic pass as evidence that source-background separation works on real photographs.
+
+The release matrix must include:
+
+- one requested ratio change that verifies background expansion without product crop, scale, stretch, or squeeze;
+- one ecommerce composition that evaluates the 15% safe-padding target;
+- one style reference containing visible text, a logo, or a watermark and an output check confirming no typography contamination;
+- one color-sensitive product checked for visible product-color drift after background grading.
+
 Expected: every claimed capability has observed evidence; unsupported surfaces are documented honestly.
 
 - [ ] **Step 4: Perform README acceptance review**
@@ -1405,3 +1464,5 @@ If verification finds a defect, stop the release check, return to the task that 
 - [ ] **Step 7: Stop before remote publication**
 
 Report the verified local state, proposed GitHub repository description, and suggested release tag `v0.1.0`. Do not create a GitHub repository, push, tag, publish a release, or upload assets until the user explicitly approves that external action.
+
+Ghost mannequin/on-model modules and an optional user-triggered Prompt Exporter remain roadmap items. They require separate specifications and must not be added opportunistically during Version 1 implementation.

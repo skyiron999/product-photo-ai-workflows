@@ -18,6 +18,11 @@ def test_manual_matrix_has_required_columns() -> None:
         assert column in text
 
 
+def test_manual_matrix_supports_honest_capability_results() -> None:
+    text = (ROOT / "tests/manual-test-matrix.md").read_text(encoding="utf-8")
+    assert "`UNSUPPORTED`" in text
+
+
 def test_each_product_has_a_manual_case() -> None:
     expected = {
         "garments.md",

@@ -2,7 +2,7 @@
 
 Use this matrix for real runs in the named consumer interface. Never record a pass from prompt review alone. Duplicate a row for every retry rather than overwriting failure evidence.
 
-Allowed status values are `NOT RUN`, `PASS`, `WARN`, `FAIL`, and `MANUAL REVIEW`. Claude analysis-only runs remain `NOT RUN` for raster editing and are described in Reviewer notes.
+Allowed status values are `NOT RUN`, `PASS`, `WARN`, `FAIL`, `MANUAL REVIEW`, and `UNSUPPORTED`. Use `UNSUPPORTED` when a tested interface lacks the required raster-editing capability; describe the observed capability boundary in Reviewer notes. Use `NOT RUN` only when no platform attempt occurred.
 
 | Platform | Surface | Test date | Source type | Case | Mode | Output | Aspect / canvas check | Padding check | Typography contamination | Color drift | Status | Reviewer notes |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|

@@ -11,7 +11,7 @@ PLATFORM_FILES = {
 }
 
 
-@pytest.mark.parametrize("platform", ["chatgpt", "gemini"])
+@pytest.mark.parametrize("platform", ["chatgpt", "gemini", "claude"])
 def test_platform_package_is_complete(platform: str) -> None:
     package = ROOT / "platforms" / platform
     assert {path.name for path in package.glob("*.md")} == PLATFORM_FILES
@@ -38,3 +38,17 @@ def test_gemini_instructions_preserve_image_roles() -> None:
     assert "style reference only" in text
     assert "product source" in text
     assert "do not require renamed files" in text
+
+
+def test_claude_package_never_claims_unsupported_rendering() -> None:
+    limitations = (ROOT / "platforms/claude/limitations.md").read_text(
+        encoding="utf-8"
+    )
+    instructions = (ROOT / "platforms/claude/installed-instructions.md").read_text(
+        encoding="utf-8"
+    )
+    assert "capability" in limitations.lower()
+    assert (
+        "do not claim that an image was edited when no image-editing tool ran"
+        in instructions
+    )

@@ -8,12 +8,14 @@ version = "0.1.0"
 description = "Platform-native workflows for faithful AI product photo editing"
 requires-python = ">=3.11"
 dependencies = ["PyYAML>=6.0,<7"]
-license = { text = "MIT" }
+license = "MIT"
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<9"]
 
+[tool.setuptools]
+packages = ["tools"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
-

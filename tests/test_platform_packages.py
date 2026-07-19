@@ -11,7 +11,7 @@ PLATFORM_FILES = {
 }
 
 
-@pytest.mark.parametrize("platform", ["chatgpt"])
+@pytest.mark.parametrize("platform", ["chatgpt", "gemini"])
 def test_platform_package_is_complete(platform: str) -> None:
     package = ROOT / "platforms" / platform
     assert {path.name for path in package.glob("*.md")} == PLATFORM_FILES
@@ -29,3 +29,12 @@ def test_chatgpt_installed_instructions_include_core_safety_commands() -> None:
         "MANUAL REVIEW",
     ):
         assert phrase in text
+
+
+def test_gemini_instructions_preserve_image_roles() -> None:
+    text = (ROOT / "platforms/gemini/installed-instructions.md").read_text(
+        encoding="utf-8"
+    )
+    assert "style reference only" in text
+    assert "product source" in text
+    assert "do not require renamed files" in text

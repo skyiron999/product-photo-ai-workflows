@@ -58,6 +58,8 @@ flowchart LR
 
 Thứ tự ưu tiên cố định là: Product Lock → ảnh sản phẩm gốc → Product Module → Output Profile → nguồn style đã xác định (Reference Style Profile, hoặc Style Card khi không dùng reference) → yêu cầu khác không xung đột.
 
+Khi cần nền bám sát hình tham khảo và hạn chế diễn giải lại ở mức cao nhất, thêm lệnh `STRICT MATCH`, ví dụ `SAFE RUN STRICT MATCH ECOMMERCE`. Chế độ này bắt buộc có reference, không dùng Style Card, không tự sáng tạo lại nền và đối chiếu trực tiếp màu, bề mặt, texture, gradient, ánh sáng cùng đặc tính bóng. Vì kết quả vẫn do AI tạo sinh, workflow luôn ghi `Pixel-exact guarantee: NO — generative visual match`. Gửi `STRICT MATCH OFF` để quay về Reference-first thông thường.
+
 Hai chế độ phù hợp với hai mức rủi ro:
 
 - `SAFE RUN` hiển thị **Product detected**, **Locked**, **Style extracted**, **Excluded from reference** và **Risks**, sau đó chờ `CONTINUE`.

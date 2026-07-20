@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_CORE_FILES = {
     "product-lock.md",
     "workflow-protocol.md",
+    "strict-match.md",
     "safe-run.md",
     "fast-run.md",
     "repair-loop.md",
@@ -23,6 +24,8 @@ def test_all_core_files_exist() -> None:
     [
         "SAFE RUN",
         "FAST RUN",
+        "STRICT MATCH",
+        "STRICT MATCH OFF",
         "ECOMMERCE",
         "SOCIAL",
         "BOTH",
@@ -71,3 +74,23 @@ def test_reference_image_is_primary_style_source_without_automatic_style_card() 
     assert "do not select, infer, or name a Style Card" in protocol
     assert "Style source: REFERENCE IMAGE" in safe_run
     assert "Style Card: NONE — reference-driven" in safe_run
+
+
+def test_strict_match_is_reference_required_product_safe_and_honest() -> None:
+    text = (ROOT / "core/strict-match.md").read_text(encoding="utf-8")
+
+    for phrase in (
+        "requires an explicitly mapped style-reference image",
+        "Product Lock remains higher priority",
+        "do not use a Style Card",
+        "minimize creative interpretation",
+        "Pixel-exact guarantee: NO — generative visual match",
+        "NEXT PRODUCT",
+        "Reference Style Profile",
+    ):
+        assert phrase in text
+
+
+def test_strict_match_is_included_in_core_knowledge_bundle() -> None:
+    builder = (ROOT / "tools/build_bundles.py").read_text(encoding="utf-8")
+    assert '"core/strict-match.md"' in builder

@@ -26,3 +26,17 @@ Quality assurance compares three roles side by side: the original product source
 - `MANUAL REVIEW` — the bounded repair loop has been exhausted, exact commercial accuracy cannot be established, or the platform cannot preserve the source reliably enough for release.
 
 Never convert an unverifiable detail into `PASS`. If color is commercially critical and the input is not calibrated, report that exact color accuracy cannot be verified even when the visual match appears close.
+
+## Strict Match checks
+
+When Strict Match is active, compare the reference and output for background color family and relative tonal values, surface material and finish, texture or grain scale and density, gradient or vignette, illumination falloff, light direction and softness, contrast, contact-shadow character, mood, and negative-space treatment. Product Lock remains higher priority than a closer background match.
+
+Report:
+
+```text
+Background mode: STRICT MATCH
+Match assessment: PASS | WARN | FAIL
+Pixel-exact guarantee: NO — generative visual match
+```
+
+Here `PASS` means no material visual mismatch is observable at the available inspection resolution; it never means pixel equality. Mark hidden reference areas, newly expanded canvas, and other reconstructed regions `WARN` when their match cannot be verified.

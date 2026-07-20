@@ -62,6 +62,8 @@ flowchart LR
 
 The precedence is fixed: Product Lock → original source → Product Module → Output Profile → resolved style source (Reference Style Profile, or a named Style Card when no reference is active) → non-conflicting user requests.
 
+For a background that should follow the reference with the least possible reinterpretation, add `STRICT MATCH`, for example `SAFE RUN STRICT MATCH ECOMMERCE`. This optional mode requires a reference, disables Style Card guidance and creative background changes, and compares color, surface, texture, gradient, lighting, and shadow directly against the reference. It remains generative, so every result states `Pixel-exact guarantee: NO — generative visual match`. Send `STRICT MATCH OFF` to return to normal Reference-first behavior.
+
 Two run modes support different risk levels:
 
 - `SAFE RUN` shows **Product detected**, **Locked**, **Style extracted**, **Excluded from reference**, and **Risks**, then waits for `CONTINUE`.

@@ -8,6 +8,7 @@
 
 - `core/product-lock.md`
 - `core/workflow-protocol.md`
+- `core/strict-match.md`
 - `core/safe-run.md`
 - `core/fast-run.md`
 - `core/quality-check.md`
@@ -95,12 +96,14 @@ When a style-reference image is supplied, treat it as the primary and complete s
 
 Style Cards are fallback templates. Use a named Style Card only when no style-reference image is supplied or when the user explicitly asks to apply, blend, or override with that card. Never use the nearest Style Card as hidden guidance for a reference-driven edit. If the user explicitly combines a reference and a Style Card, state which source controls each transferable attribute before editing.
 
+`STRICT MATCH` tightens reference-driven mode by minimizing creative interpretation and requiring direct visual matching of every observable transferable background attribute. It requires a mapped reference and never relaxes Product Lock. `STRICT MATCH OFF` returns to normal Reference-first behavior without discarding the reference.
+
 ## Canonical sequence
 
 1. **Intake:** map image roles and identify missing inputs.
 2. **Product analysis:** inspect only visible product facts and select the closest Product Module.
 3. **Lock:** create the Product Lock from the original product source.
-4. **Style extraction:** when a reference is present, create its Reference Style Profile directly; extract background, light, shadow, palette, mood, and spacing while explicitly excluding products, props, people, and text. Otherwise, apply the explicitly selected Style Card.
+4. **Style extraction:** when a reference is present, create its Reference Style Profile directly; extract background, light, shadow, palette, mood, and spacing while explicitly excluding products, props, people, and text. In Strict Match, apply the matching contract in `strict-match.md`. Otherwise, apply the explicitly selected Style Card.
 5. **Render brief:** combine the lock, module, output profile, style, and compatible user instructions according to precedence.
 6. **Edit:** edit the original product source rather than recreating the complete scene from scratch.
 7. **QA:** compare original source, reference, and output using the quality check.
@@ -111,11 +114,13 @@ Style Cards are fallback templates. Use a named Style Card only when no style-re
 
 - `SAFE RUN` — show the lock sheet and risks, then wait for approval before editing.
 - `FAST RUN` — perform the same checks internally and edit immediately unless a mandatory pause condition is found.
+- `STRICT MATCH` — require a mapped reference and minimize creative interpretation while matching its observable transferable background treatment as closely as the interface allows.
+- `STRICT MATCH OFF` — return to normal Reference-first behavior without discarding the active reference.
 - `ECOMMERCE` — use the ecommerce output profile only.
 - `SOCIAL` — use the social output profile only.
 - `BOTH` — produce ecommerce and social versions from the same original product source as separate edits.
 - `CONTINUE` — approve the visible Safe Run lock sheet and proceed with the edit.
-- `NEXT PRODUCT` — clear the current original product source and its lock while retaining the chosen run mode, resolved style source (including the Reference Style Profile), and output settings unless the user changes them.
+- `NEXT PRODUCT` — clear the current original product source and its lock while retaining the chosen run mode, background mode (including Strict Match), resolved style source (including the Reference Style Profile), and output settings unless the user changes them.
 - `REPAIR PRODUCT` — restore overall product identity, geometry, arrangement, and count from the original product source.
 - `REPAIR COLOR` — correct product color drift from the original product source without changing the background treatment.
 - `REPAIR DETAILS` — restore construction, texture, pattern, text, logo, or jewelry components from the original product source.
@@ -132,6 +137,67 @@ Commands are case-insensitive in conversation, but adapters should display their
 If the active platform cannot edit uploaded pixels while preserving the source, explain the limitation before generating. Do not silently convert the task into product recreation. Keep the workflow on the platform selected by the user; do not redirect or export a cross-platform prompt automatically.
 
 <!-- END SOURCE: core/workflow-protocol.md -->
+
+---
+
+<!-- BEGIN SOURCE: core/strict-match.md -->
+
+## Source: `core/strict-match.md`
+
+# Strict Match
+
+`STRICT MATCH` is an optional reference-adherence mode. The mode must minimize creative interpretation and reproduce the active style reference's transferable background treatment as closely as the current generative interface allows. It is not a pixel-copying mode. `STRICT MATCH OFF` returns to normal Reference-first behavior without discarding the active reference.
+
+## Preconditions
+
+Strict Match requires an explicitly mapped style-reference image. If none exists, pause and request one before editing. Build or refresh the Reference Style Profile from that image. In this mode, do not use a Style Card, nearest preset, or hidden preset guidance.
+
+## Matching target
+
+Match every observable and transferable background attribute:
+
+- color family, relative tonal values, saturation, and color temperature;
+- surface material and finish;
+- texture or grain character, scale, density, and contrast;
+- gradient, vignette, illumination falloff, and light/dark distribution;
+- light direction, diffusion, softness, and contrast;
+- contact-shadow direction, softness, density, and grounding character;
+- overall background mood and negative-space treatment.
+
+Minimize creative interpretation. Do not reinterpret, beautify, substitute the palette, add props or typography, or introduce decorative elements. Only the minimum contact-shadow adaptation required to ground the locked product is allowed.
+
+## Safety and unavailable pixels
+
+Product Lock remains higher priority than Strict Match. Never recolor, relight, reshape, crop, distort, or rebuild the product to improve the background match. Exclude reference products, props, people, packages, text, logos, and watermarks.
+
+When objects hide part of the reference background or a new aspect ratio exposes unseen canvas, reconstruct those regions and disclose them as unverifiable rather than claiming equality.
+
+## Run and batch state
+
+Safe Run reports the match target and reconstructed regions before `CONTINUE`. Fast Run performs the same analysis internally. `NEXT PRODUCT` clears the previous product source and Product Lock while retaining Strict Match and the Reference Style Profile unless the user changes them.
+
+## Required reporting
+
+Before editing in Safe Run:
+
+```text
+Background mode: STRICT MATCH
+Match target: <concise observable background profile>
+Unseen/reconstructed regions: NONE | <named regions>
+Pixel-exact guarantee: NO — generative visual match
+```
+
+After editing:
+
+```text
+Background mode: STRICT MATCH
+Match assessment: PASS | WARN | FAIL
+Pixel-exact guarantee: NO — generative visual match
+```
+
+`PASS` means no material visual mismatch is observable at the available inspection resolution; it never means pixel equality. `WARN` names an unverifiable or visibly approximate attribute. `FAIL` names a material background mismatch or Product Lock violation.
+
+<!-- END SOURCE: core/strict-match.md -->
 
 ---
 
@@ -155,6 +221,17 @@ Analyze the inputs and show a concise lock sheet before any image edit. The lock
 
 Also state the selected Product Module, Output Profile, and style source. When a reference is present, show its dynamic Reference Style Profile, followed by the exact status lines `Style source: REFERENCE IMAGE` and `Style Card: NONE — reference-driven`; do not replace the profile with a similar named preset. When no reference is present, show `Style source: STYLE CARD` and the explicitly selected Style Card. Describe observable uncertainty plainly; never invent certainty or calibrated color values.
 
+When Strict Match is active, require a mapped reference and add these fields before the approval gate:
+
+```text
+Background mode: STRICT MATCH
+Match target: <concise observable background profile>
+Unseen/reconstructed regions: NONE | <named regions>
+Pixel-exact guarantee: NO — generative visual match
+```
+
+Do not proceed when the reference role is missing or ambiguous.
+
 ## Approval gate
 
 End the lock sheet by asking the user to reply `CONTINUE` or correct the mapping and locks. Do not render, edit, or generate before `CONTINUE` is received. After approval, preserve the lock sheet as the contract for QA and any repair.
@@ -175,7 +252,7 @@ Fast Run is the high-throughput mode for a repeated, already-understood setup. I
 
 ## Required behavior
 
-For every product, map roles, rebuild the lock from the original product source, extract only allowed style attributes, apply the selected modules, edit, and run QA. When a reference is present, retain its dynamic Reference Style Profile as the batch style source and do not auto-select a Style Card; its status is `Style source: REFERENCE IMAGE` and `Style Card: NONE — reference-driven`. Do not reuse the previous product's identity details. The command `NEXT PRODUCT` clears the previous source and lock while retaining the Reference Style Profile, run mode, and output settings.
+For every product, map roles, rebuild the lock from the original product source, extract only allowed style attributes, apply the selected modules, edit, and run QA. When a reference is present, retain its dynamic Reference Style Profile as the batch style source and do not auto-select a Style Card; its status is `Style source: REFERENCE IMAGE` and `Style Card: NONE — reference-driven`. When Strict Match is active, require that reference, minimize creative interpretation according to `strict-match.md`, and report `Pixel-exact guarantee: NO — generative visual match`. Do not reuse the previous product's identity details. The command `NEXT PRODUCT` clears the previous source and lock while retaining the Reference Style Profile, background mode, run mode, and output settings.
 
 Return a short result note containing the output target and `PASS`, `WARN`, `FAIL`, or `MANUAL REVIEW`. Surface any warning that could affect commercial use.
 
@@ -184,6 +261,7 @@ Return a short result note containing the output target and `PASS`, `WARN`, `FAI
 Stop before editing and ask for the minimum clarification when any of these occurs:
 
 - source and reference roles are ambiguous;
+- Strict Match is active without an explicitly mapped reference;
 - multiple products cannot be separated into a reliable lock;
 - critical text, construction, pattern, or component details are unreadable;
 - the requested crop, spacing, or style conflicts with locked geometry;
@@ -229,6 +307,20 @@ Quality assurance compares three roles side by side: the original product source
 - `MANUAL REVIEW` — the bounded repair loop has been exhausted, exact commercial accuracy cannot be established, or the platform cannot preserve the source reliably enough for release.
 
 Never convert an unverifiable detail into `PASS`. If color is commercially critical and the input is not calibrated, report that exact color accuracy cannot be verified even when the visual match appears close.
+
+## Strict Match checks
+
+When Strict Match is active, compare the reference and output for background color family and relative tonal values, surface material and finish, texture or grain scale and density, gradient or vignette, illumination falloff, light direction and softness, contrast, contact-shadow character, mood, and negative-space treatment. Product Lock remains higher priority than a closer background match.
+
+Report:
+
+```text
+Background mode: STRICT MATCH
+Match assessment: PASS | WARN | FAIL
+Pixel-exact guarantee: NO — generative visual match
+```
+
+Here `PASS` means no material visual mismatch is observable at the available inspection resolution; it never means pixel equality. Mark hidden reference areas, newly expanded canvas, and other reconstructed regions `WARN` when their match cannot be verified.
 
 <!-- END SOURCE: core/quality-check.md -->
 

@@ -63,3 +63,22 @@ def test_platform_runtime_is_reference_first(platform: str, filename: str) -> No
     assert "Reference Style Profile" in text
     assert "do not auto-select" in text
     assert "Style Card: NONE — reference-driven" in text
+
+
+@pytest.mark.parametrize("platform", ["chatgpt", "gemini", "claude"])
+@pytest.mark.parametrize("filename", ["installed-instructions.md", "instant-run.md"])
+def test_platform_runtime_supports_strict_reference_match(
+    platform: str, filename: str
+) -> None:
+    text = (ROOT / "platforms" / platform / filename).read_text(encoding="utf-8")
+
+    for phrase in (
+        "STRICT MATCH",
+        "requires an explicitly mapped style reference",
+        "do not use a Style Card",
+        "Product Lock remains higher priority",
+        "Background mode: STRICT MATCH",
+        "Match assessment: PASS | WARN | FAIL",
+        "Pixel-exact guarantee: NO — generative visual match",
+    ):
+        assert phrase in text

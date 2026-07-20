@@ -15,6 +15,8 @@ Claude can always perform the visual analysis and workflow assembly stages when 
 
 With a reference attached, confirm that the analysis says `Style source: REFERENCE IMAGE` and `Style Card: NONE — reference-driven`. A named Style Card is only a fallback when no reference is active or you explicitly request one.
 
+For maximum visual adherence, send `SAFE RUN STRICT MATCH ECOMMERCE`. Confirm that Claude reports the match target, reconstructed regions, and `Pixel-exact guarantee: NO — generative visual match`. If raster editing is unavailable, this remains `ANALYSIS ONLY`.
+
 ## Path 2 — Install Once as a Claude Project
 
 1. Open [Claude Projects](https://claude.ai/projects) and create a new project.

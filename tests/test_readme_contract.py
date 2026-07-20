@@ -71,3 +71,10 @@ def test_quickstarts_link_to_each_other() -> None:
     vietnamese = (ROOT / "QUICKSTART.vi.md").read_text(encoding="utf-8")
     assert "QUICKSTART.vi.md" in english
     assert "QUICKSTART.md" in vietnamese
+
+
+def test_readmes_and_quickstarts_document_strict_match_honestly() -> None:
+    for filename in ("README.md", "README.vi.md", "QUICKSTART.md", "QUICKSTART.vi.md"):
+        text = (ROOT / filename).read_text(encoding="utf-8")
+        assert "STRICT MATCH" in text
+        assert "Pixel-exact guarantee: NO — generative visual match" in text

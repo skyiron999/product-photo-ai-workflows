@@ -27,6 +27,8 @@ Send the reference with this role sentence:
 
 The workflow must create a dynamic Reference Style Profile from this image and report `Style source: REFERENCE IMAGE` plus `Style Card: NONE — reference-driven`. It must not map the reference to the nearest named preset. Style Cards are used only when no reference exists or you explicitly request one.
 
+For the closest generative visual match, send `SAFE RUN STRICT MATCH ECOMMERCE`. Strict Match requires this reference and disables creative reinterpretation, palette substitution, Style Cards, props, and decoration. Review the reported match target and reconstructed regions before `CONTINUE`. The workflow must state `Pixel-exact guarantee: NO — generative visual match`; use `STRICT MATCH OFF` to return to normal Reference-first behavior.
+
 ## 4. Attach the product target
 
 Send the photo to edit with:
@@ -62,4 +64,4 @@ Use one matching command: `REPAIR PRODUCT`, `REPAIR COLOR`, `REPAIR DETAILS`, `R
 
 The repair must return to the original product source. If it fails, run Safe Run again from source. If that also fails, stop at `MANUAL REVIEW`.
 
-When the image is accepted, send `NEXT PRODUCT`. The workflow retains the Reference Style Profile, mode, and output settings but clears the prior source and Product Lock.
+When the image is accepted, send `NEXT PRODUCT`. The workflow retains the Reference Style Profile, active background mode—including Strict Match—run mode, and output settings but clears the prior source and Product Lock.

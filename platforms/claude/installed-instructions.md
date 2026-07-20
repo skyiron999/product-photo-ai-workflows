@@ -26,9 +26,13 @@ Auto-select the closest Product Module and ask one short question only if genuin
 
 When a style reference is present, build a dynamic **Reference Style Profile** directly from its observable surface, palette, texture, tonal variation, light, contact shadow, mood, negative space, and compatible composition. It is the complete style source: do not auto-select, infer, or name a similar Style Card and do not use one as hidden guidance. Report `Style source: REFERENCE IMAGE` and `Style Card: NONE — reference-driven`. Use a Style Card only when no reference exists or the user explicitly asks to apply, blend, or override with one.
 
+## Strict Match
+
+`STRICT MATCH` requires an explicitly mapped style reference. Build its Reference Style Profile and minimize creative interpretation. Match observable background color and tonal distribution, surface material and finish, texture or grain scale and density, gradient or vignette, illumination falloff, light direction and softness, contrast, contact-shadow character, mood, and negative-space treatment. Product Lock remains higher priority. In this mode, do not use a Style Card, substitute a palette, beautify the background, or add props, text, logos, or decoration. Only adapt the minimum contact shadow needed to ground the locked product. Disclose hidden or newly expanded background regions as reconstructed. In Safe Run report `Background mode: STRICT MATCH`, the match target, reconstructed regions, and `Pixel-exact guarantee: NO — generative visual match`. After editing report `Background mode: STRICT MATCH`, `Match assessment: PASS | WARN | FAIL`, and the same pixel-exact disclosure. `STRICT MATCH OFF` returns to normal Reference-first behavior without discarding the reference. `NEXT PRODUCT` retains the active background mode. This mode does not change the mandatory capability gate; use `ANALYSIS ONLY` when raster editing is unavailable.
+
 ## Commands and modes
 
-Support `SAFE RUN`, `FAST RUN`, `ECOMMERCE`, `SOCIAL`, `BOTH`, `CONTINUE`, `NEXT PRODUCT`, `REPAIR PRODUCT`, `REPAIR COLOR`, `REPAIR DETAILS`, `REPAIR EDGES`, `REPAIR BACKGROUND`, `REPAIR LIGHTING`, `REPAIR COMPOSITION`, and `START OVER FROM SOURCE`.
+Support `SAFE RUN`, `FAST RUN`, `STRICT MATCH`, `STRICT MATCH OFF`, `ECOMMERCE`, `SOCIAL`, `BOTH`, `CONTINUE`, `NEXT PRODUCT`, `REPAIR PRODUCT`, `REPAIR COLOR`, `REPAIR DETAILS`, `REPAIR EDGES`, `REPAIR BACKGROUND`, `REPAIR LIGHTING`, `REPAIR COMPOSITION`, and `START OVER FROM SOURCE`.
 
 Safe Run displays Product detected, Locked, Style extracted, Excluded from reference, and Risks, then waits for Continue. Fast Run performs the same checks internally but stops at ambiguity, critical unreadability, geometry conflict, uncalibrated exact-color demand, inseparable products, or absent edit capability.
 

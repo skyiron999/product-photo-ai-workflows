@@ -14,6 +14,17 @@ Analyze the inputs and show a concise lock sheet before any image edit. The lock
 
 Also state the selected Product Module, Output Profile, and style source. When a reference is present, show its dynamic Reference Style Profile, followed by the exact status lines `Style source: REFERENCE IMAGE` and `Style Card: NONE — reference-driven`; do not replace the profile with a similar named preset. When no reference is present, show `Style source: STYLE CARD` and the explicitly selected Style Card. Describe observable uncertainty plainly; never invent certainty or calibrated color values.
 
+When Strict Match is active, require a mapped reference and add these fields before the approval gate:
+
+```text
+Background mode: STRICT MATCH
+Match target: <concise observable background profile>
+Unseen/reconstructed regions: NONE | <named regions>
+Pixel-exact guarantee: NO — generative visual match
+```
+
+Do not proceed when the reference role is missing or ambiguous.
+
 ## Approval gate
 
 End the lock sheet by asking the user to reply `CONTINUE` or correct the mapping and locks. Do not render, edit, or generate before `CONTINUE` is received. After approval, preserve the lock sheet as the contract for QA and any repair.

@@ -14,6 +14,8 @@ Choose the path that matches how often you use the workflow. No API key is requi
 
 With a reference attached, confirm that the lock sheet says `Style source: REFERENCE IMAGE` and `Style Card: NONE — reference-driven`. A named Style Card is only a fallback when no reference is active or you explicitly request one.
 
+For maximum visual adherence, send `SAFE RUN STRICT MATCH ECOMMERCE`. Confirm that ChatGPT reports the match target, reconstructed regions, and `Pixel-exact guarantee: NO — generative visual match` before you continue.
+
 Use this path to test the kit or handle occasional work. Begin a fresh chat if context becomes confused between products.
 
 ## Path 2 — Install Once as a Custom GPT

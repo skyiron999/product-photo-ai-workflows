@@ -27,12 +27,14 @@ When a style-reference image is supplied, treat it as the primary and complete s
 
 Style Cards are fallback templates. Use a named Style Card only when no style-reference image is supplied or when the user explicitly asks to apply, blend, or override with that card. Never use the nearest Style Card as hidden guidance for a reference-driven edit. If the user explicitly combines a reference and a Style Card, state which source controls each transferable attribute before editing.
 
+`STRICT MATCH` tightens reference-driven mode by minimizing creative interpretation and requiring direct visual matching of every observable transferable background attribute. It requires a mapped reference and never relaxes Product Lock. `STRICT MATCH OFF` returns to normal Reference-first behavior without discarding the reference.
+
 ## Canonical sequence
 
 1. **Intake:** map image roles and identify missing inputs.
 2. **Product analysis:** inspect only visible product facts and select the closest Product Module.
 3. **Lock:** create the Product Lock from the original product source.
-4. **Style extraction:** when a reference is present, create its Reference Style Profile directly; extract background, light, shadow, palette, mood, and spacing while explicitly excluding products, props, people, and text. Otherwise, apply the explicitly selected Style Card.
+4. **Style extraction:** when a reference is present, create its Reference Style Profile directly; extract background, light, shadow, palette, mood, and spacing while explicitly excluding products, props, people, and text. In Strict Match, apply the matching contract in `strict-match.md`. Otherwise, apply the explicitly selected Style Card.
 5. **Render brief:** combine the lock, module, output profile, style, and compatible user instructions according to precedence.
 6. **Edit:** edit the original product source rather than recreating the complete scene from scratch.
 7. **QA:** compare original source, reference, and output using the quality check.
@@ -43,11 +45,13 @@ Style Cards are fallback templates. Use a named Style Card only when no style-re
 
 - `SAFE RUN` — show the lock sheet and risks, then wait for approval before editing.
 - `FAST RUN` — perform the same checks internally and edit immediately unless a mandatory pause condition is found.
+- `STRICT MATCH` — require a mapped reference and minimize creative interpretation while matching its observable transferable background treatment as closely as the interface allows.
+- `STRICT MATCH OFF` — return to normal Reference-first behavior without discarding the active reference.
 - `ECOMMERCE` — use the ecommerce output profile only.
 - `SOCIAL` — use the social output profile only.
 - `BOTH` — produce ecommerce and social versions from the same original product source as separate edits.
 - `CONTINUE` — approve the visible Safe Run lock sheet and proceed with the edit.
-- `NEXT PRODUCT` — clear the current original product source and its lock while retaining the chosen run mode, resolved style source (including the Reference Style Profile), and output settings unless the user changes them.
+- `NEXT PRODUCT` — clear the current original product source and its lock while retaining the chosen run mode, background mode (including Strict Match), resolved style source (including the Reference Style Profile), and output settings unless the user changes them.
 - `REPAIR PRODUCT` — restore overall product identity, geometry, arrangement, and count from the original product source.
 - `REPAIR COLOR` — correct product color drift from the original product source without changing the background treatment.
 - `REPAIR DETAILS` — restore construction, texture, pattern, text, logo, or jewelry components from the original product source.

@@ -14,6 +14,8 @@ Choose Instant Run for occasional work or install a custom Gem for repeated batc
 
 With a reference attached, confirm that the lock sheet says `Style source: REFERENCE IMAGE` and `Style Card: NONE — reference-driven`. A named Style Card is only a fallback when no reference is active or you explicitly request one.
 
+For maximum visual adherence, send `SAFE RUN STRICT MATCH ECOMMERCE`. Confirm that Gemini reports the match target, reconstructed regions, and `Pixel-exact guarantee: NO — generative visual match` before you continue.
+
 ## Path 2 — Install Once as a Gem
 
 Custom Gems are created and edited in the Gemini web app; the resulting Gem can be available in other supported Gemini surfaces.

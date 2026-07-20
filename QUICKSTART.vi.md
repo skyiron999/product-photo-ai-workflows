@@ -49,6 +49,8 @@ Gửi hình tham khảo kèm câu này:
 
 Workflow phải tạo **Reference Style Profile động** trực tiếp từ hình này và hiển thị `Style source: REFERENCE IMAGE` cùng `Style Card: NONE — reference-driven`. AI không được quy hình tham khảo về preset có tên gần nhất. Style Card chỉ dùng khi không có hình tham khảo hoặc khi bạn chủ động yêu cầu một card cụ thể.
 
+Muốn nền bám sát hình tham khảo ở mức cao nhất mà AI tạo sinh có thể làm, gửi `SAFE RUN STRICT MATCH ECOMMERCE`. Strict Match bắt buộc dùng reference này; không cho phép sáng tạo lại, đổi bảng màu, dùng Style Card, thêm đạo cụ hoặc trang trí. Trước `CONTINUE`, hãy kiểm tra match target và những vùng nền phải tái tạo. Workflow bắt buộc ghi `Pixel-exact guarantee: NO — generative visual match`; gửi `STRICT MATCH OFF` để trở về Reference-first thông thường.
+
 Bạn có thể dùng một hình tham khảo cho nhiều ảnh sản phẩm trong cùng batch.
 
 ## 4. Gửi ảnh sản phẩm cần thay nền
@@ -143,7 +145,7 @@ Khi ảnh đã được duyệt, gửi:
 NEXT PRODUCT
 ```
 
-Lệnh này xóa ảnh gốc và Khóa toàn vẹn sản phẩm của món trước, nhưng giữ lại Reference Style Profile, chế độ và output đã chọn cho batch tiếp theo.
+Lệnh này xóa ảnh gốc và Khóa toàn vẹn sản phẩm của món trước, nhưng giữ lại Reference Style Profile, chế độ nền đang bật—kể cả Strict Match—run mode và output đã chọn cho batch tiếp theo.
 
 ## Công thức chạy thử đầu tiên
 

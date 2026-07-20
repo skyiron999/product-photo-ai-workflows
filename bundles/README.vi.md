@@ -11,6 +11,8 @@ Bốn file đã gom này kết hợp 17 tài liệu workflow có thể phát hà
 
 Bundle Style Card là thư viện dự phòng. Khi người dùng gửi hình tham khảo, workflow tạo Reference Style Profile động từ chính hình đó và không tự chọn một card có tên.
 
+Bundle lõi cũng chứa chế độ `STRICT MATCH` để bám sát hình tham khảo tối đa trong giới hạn AI tạo sinh. Workflow luôn ghi `Pixel-exact guarantee: NO — generative visual match`.
+
 Upload cả bốn file vào khu vực Knowledge của Custom GPT, Gemini Gem hoặc Claude Project. Không upload file README này, các file `_template.md`, hoặc các module nguồn riêng lẻ cùng lúc.
 
 ## Tại sao là bốn file

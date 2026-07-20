@@ -16,6 +16,8 @@ Workflow chạy trực tiếp trong Gemini và không cần API key. Dùng **Ins
 
 Khi đã có hình tham khảo, lock sheet phải ghi `Style source: REFERENCE IMAGE` và `Style Card: NONE — reference-driven`. Style Card có tên chỉ dùng khi không có reference hoặc khi bạn chủ động yêu cầu.
 
+Muốn bám sát nền mẫu tối đa, gửi `SAFE RUN STRICT MATCH ECOMMERCE`. Trước khi tiếp tục, kiểm tra Gemini đã ghi match target, vùng nền phải tái tạo và `Pixel-exact guarantee: NO — generative visual match`.
+
 Bạn không cần đổi tên ảnh. Nếu gửi nhiều ảnh cùng lúc nhưng không ghi vai trò, Gemini phải mô tả từng ảnh bằng đặc điểm nhìn thấy được, đề xuất source/reference và chờ bạn xác nhận trước khi edit.
 
 Prompt runtime vẫn bằng tiếng Anh để giữ hành vi nhất quán, nhưng toàn bộ trao đổi làm việc có thể dùng tiếng Việt.

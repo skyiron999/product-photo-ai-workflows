@@ -30,6 +30,8 @@ Claude không được giả vờ rằng raster edit đã xảy ra. Khi thiếu 
 
 Khi đã có hình tham khảo, phần phân tích phải ghi `Style source: REFERENCE IMAGE` và `Style Card: NONE — reference-driven`. Style Card có tên chỉ dùng khi không có reference hoặc khi bạn chủ động yêu cầu.
 
+Muốn bám sát nền mẫu tối đa, gửi `SAFE RUN STRICT MATCH ECOMMERCE`. Kiểm tra Claude đã ghi match target, vùng nền phải tái tạo và `Pixel-exact guarantee: NO — generative visual match`. Nếu không có raster-editing tool, kết quả vẫn chỉ là `ANALYSIS ONLY`.
+
 Prompt runtime được giữ bằng tiếng Anh để giữ nguyên các lệnh và điều kiện capability. Bạn có thể làm việc bằng tiếng Việt trong các tin nhắn tiếp theo.
 
 ## Cách 2 — Install Once bằng Claude Project

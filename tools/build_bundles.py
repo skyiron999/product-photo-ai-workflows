@@ -21,6 +21,7 @@ BUNDLE_SPECS = (
         sources=(
             "core/product-lock.md",
             "core/workflow-protocol.md",
+            "core/strict-match.md",
             "core/safe-run.md",
             "core/fast-run.md",
             "core/quality-check.md",

@@ -11,6 +11,8 @@ These four generated files combine the 17 publishable workflow sources into a co
 
 The Style Cards bundle is a fallback library. When the user supplies a style-reference image, the workflow builds a dynamic Reference Style Profile from that image and does not auto-select a named card.
 
+The core bundle also defines optional `STRICT MATCH` behavior for maximum generative visual adherence. It always reports `Pixel-exact guarantee: NO — generative visual match`.
+
 Upload all four files to the Knowledge area of your Custom GPT, Gemini Gem, or Claude Project. Do not upload this README, contributor `_template.md` files, or the individual source modules at the same time.
 
 ## Why four files

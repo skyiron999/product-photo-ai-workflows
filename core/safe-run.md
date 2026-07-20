@@ -12,7 +12,7 @@ Analyze the inputs and show a concise lock sheet before any image edit. The lock
 - **Excluded from reference:** all reference products, props, people, typography, logos, watermarks, packaging, and conflicting elements.
 - **Risks:** ambiguity, occlusion, low resolution, reflective surfaces, unreadable details, difficult edges, color uncertainty, canvas constraints, or unsupported platform behavior.
 
-Also state the selected Product Module, Style Card, and Output Profile. Describe observable uncertainty plainly; never invent certainty or calibrated color values.
+Also state the selected Product Module, Output Profile, and style source. When a reference is present, show its dynamic Reference Style Profile, followed by the exact status lines `Style source: REFERENCE IMAGE` and `Style Card: NONE — reference-driven`; do not replace the profile with a similar named preset. When no reference is present, show `Style source: STYLE CARD` and the explicitly selected Style Card. Describe observable uncertainty plainly; never invent certainty or calibrated color values.
 
 ## Approval gate
 

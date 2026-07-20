@@ -13,6 +13,8 @@ Claude can always perform the visual analysis and workflow assembly stages when 
 5. Send `SAFE RUN ECOMMERCE`, `FAST RUN SOCIAL`, or another supported command combination.
 6. Read Claude's capability statement before expecting a raster output. If editing is unavailable, use the resulting lock sheet and render brief as analysis—not as proof an image was changed.
 
+With a reference attached, confirm that the analysis says `Style source: REFERENCE IMAGE` and `Style Card: NONE — reference-driven`. A named Style Card is only a fallback when no reference is active or you explicitly request one.
+
 ## Path 2 — Install Once as a Claude Project
 
 1. Open [Claude Projects](https://claude.ai/projects) and create a new project.
@@ -23,7 +25,7 @@ Claude can always perform the visual analysis and workflow assembly stages when 
    - [Product Modules](../../bundles/knowledge-products.md)
    - [Style Cards](../../bundles/knowledge-styles.md)
    - [Output Profiles](../../bundles/knowledge-outputs.md)
-   Do not upload both bundles and individual source modules.
+   The Style Cards bundle remains a no-reference fallback and does not override an uploaded reference. Do not upload both bundles and individual source modules.
 5. Start a project chat and test a non-critical source. Confirm that Claude states whether an image-editing tool is actually available.
 6. Replace affected generated bundles and instruction files whenever the repository is updated.
 

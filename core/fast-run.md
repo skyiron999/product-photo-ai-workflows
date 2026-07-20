@@ -4,7 +4,7 @@ Fast Run is the high-throughput mode for a repeated, already-understood setup. I
 
 ## Required behavior
 
-For every product, map roles, rebuild the lock from the original product source, extract only allowed style attributes, apply the selected modules, edit, and run QA. Do not reuse the previous product's identity details. The command `NEXT PRODUCT` clears the previous source and lock while retaining chosen batch settings.
+For every product, map roles, rebuild the lock from the original product source, extract only allowed style attributes, apply the selected modules, edit, and run QA. When a reference is present, retain its dynamic Reference Style Profile as the batch style source and do not auto-select a Style Card; its status is `Style source: REFERENCE IMAGE` and `Style Card: NONE — reference-driven`. Do not reuse the previous product's identity details. The command `NEXT PRODUCT` clears the previous source and lock while retaining the Reference Style Profile, run mode, and output settings.
 
 Return a short result note containing the output target and `PASS`, `WARN`, `FAIL`, or `MANUAL REVIEW`. Surface any warning that could affect commercial use.
 

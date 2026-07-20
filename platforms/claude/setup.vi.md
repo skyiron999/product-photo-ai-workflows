@@ -28,6 +28,8 @@ Claude không được giả vờ rằng raster edit đã xảy ra. Khi thiếu 
 6. Gửi `SAFE RUN ECOMMERCE` hoặc chế độ bạn muốn.
 7. Đọc capability statement của Claude trước khi kỳ vọng một output ảnh.
 
+Khi đã có hình tham khảo, phần phân tích phải ghi `Style source: REFERENCE IMAGE` và `Style Card: NONE — reference-driven`. Style Card có tên chỉ dùng khi không có reference hoặc khi bạn chủ động yêu cầu.
+
 Prompt runtime được giữ bằng tiếng Anh để giữ nguyên các lệnh và điều kiện capability. Bạn có thể làm việc bằng tiếng Việt trong các tin nhắn tiếp theo.
 
 ## Cách 2 — Install Once bằng Claude Project
@@ -41,7 +43,7 @@ Prompt runtime được giữ bằng tiếng Anh để giữ nguyên các lệnh
    - [Product Module](../../bundles/knowledge-products.md)
    - [Style Card](../../bundles/knowledge-styles.md)
    - [Output Profile](../../bundles/knowledge-outputs.md)
-   Không upload đồng thời bundle và file nguồn riêng lẻ.
+   Bundle Style Card chỉ là thư viện dự phòng, không ghi đè hình tham khảo đã upload. Không upload đồng thời bundle và file nguồn riêng lẻ.
 6. Không thêm `_template.md` trừ khi project dùng để phát triển module.
 7. Mở chat mới trong project và thử bằng một ảnh không quan trọng.
 8. Xác nhận Claude nói rõ có hay không có công cụ image editing.

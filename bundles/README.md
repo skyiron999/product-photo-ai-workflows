@@ -9,6 +9,8 @@ These four generated files combine the 17 publishable workflow sources into a co
 3. [Style Cards](knowledge-styles.md)
 4. [Output Profiles](knowledge-outputs.md)
 
+The Style Cards bundle is a fallback library. When the user supplies a style-reference image, the workflow builds a dynamic Reference Style Profile from that image and does not auto-select a named card.
+
 Upload all four files to the Knowledge area of your Custom GPT, Gemini Gem, or Claude Project. Do not upload this README, contributor `_template.md` files, or the individual source modules at the same time.
 
 ## Why four files

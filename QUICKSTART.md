@@ -25,6 +25,8 @@ Send the reference with this role sentence:
 
 > Use this image as the style reference only. Extract the background, lighting, contact shadow, palette, mood, and spacing. Do not copy its product, props, text, logos, or watermark.
 
+The workflow must create a dynamic Reference Style Profile from this image and report `Style source: REFERENCE IMAGE` plus `Style Card: NONE — reference-driven`. It must not map the reference to the nearest named preset. Style Cards are used only when no reference exists or you explicitly request one.
+
 ## 4. Attach the product target
 
 Send the photo to edit with:
@@ -60,4 +62,4 @@ Use one matching command: `REPAIR PRODUCT`, `REPAIR COLOR`, `REPAIR DETAILS`, `R
 
 The repair must return to the original product source. If it fails, run Safe Run again from source. If that also fails, stop at `MANUAL REVIEW`.
 
-When the image is accepted, send `NEXT PRODUCT`. The workflow retains your style, mode, and output settings but clears the prior source and Product Lock.
+When the image is accepted, send `NEXT PRODUCT`. The workflow retains the Reference Style Profile, mode, and output settings but clears the prior source and Product Lock.

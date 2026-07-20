@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Style-reference images now create dynamic Reference Style Profiles and take precedence over named Style Cards; presets remain available only as no-reference fallbacks or explicit user choices.
+
 ### Planned
 
 - Rights-cleared real and synthetic example assets with observed cross-platform test records.

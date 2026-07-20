@@ -22,7 +22,8 @@ This repository separates five concerns that are commonly mixed inside one long 
 
 - **Product Lock** defines what cannot change.
 - **Product Modules** add category-specific risks and inspection rules.
-- **Style Cards** describe the transferable background and light treatment.
+- **Reference Style Profiles** are extracted dynamically from supplied reference images.
+- **Style Cards** are reusable fallback treatments for work without a reference.
 - **Output Profiles** define ecommerce or social composition boundaries.
 - **Platform Packages** adapt the same workflow to the controls and limitations of each interface.
 
@@ -43,7 +44,7 @@ You do not need to write code. A small Python test suite exists for contributors
 
 ## How the workflow protects your product
 
-The original product photo remains authoritative. The reference is allowed to contribute surface, palette, lighting, contact shadow, mood, and compatible spacing—but never its product, props, people, packaging, typography, logos, or watermarks.
+The original product photo remains authoritative. The reference is allowed to contribute surface, palette, lighting, contact shadow, mood, and compatible spacing—but never its product, props, people, packaging, typography, logos, or watermarks. When a reference is present, the workflow creates a dynamic Reference Style Profile from that image; it does not rename the reference as the nearest Style Card or let a preset bias the edit.
 
 ```mermaid
 flowchart LR
@@ -59,7 +60,7 @@ flowchart LR
     I -->|Persists| J["Safe Run, then MANUAL REVIEW"]
 ```
 
-The precedence is fixed: Product Lock → original source → Product Module → Output Profile → Style Card/reference → non-conflicting user requests.
+The precedence is fixed: Product Lock → original source → Product Module → Output Profile → resolved style source (Reference Style Profile, or a named Style Card when no reference is active) → non-conflicting user requests.
 
 Two run modes support different risk levels:
 
@@ -108,7 +109,7 @@ Product Modules focus QA on the details most likely to drift.
 | [Bracelets](products/bracelets.md) | Circumference, band or chain geometry, links, charms, spacing, clasp, stones, finish, and reflections. |
 | [Reflective accessories](products/reflective-accessories.md) | Geometry, engraving, polished edges, metal color, transparency, highlights, and plausible environmental reflections. |
 
-Style Cards describe transferable treatment. They never authorize a product change.
+When a style reference is supplied, its dynamic Reference Style Profile is the style source. Style Cards below are optional fallbacks for jobs without a reference, or for cases where the user explicitly requests a named card. They never authorize a product change.
 
 | Style Card | Visual direction | Recommended use |
 |---|---|---|
@@ -129,7 +130,7 @@ It intentionally contains no unlicensed image and no fabricated successful gener
 
 For repeated catalog work, treat the workflow as a quality system rather than a one-click filter:
 
-1. **Calibrate.** Select representative difficult products, one approved style, and one output profile. Start in Safe Run.
+1. **Calibrate.** Select representative difficult products, one approved reference (or one fallback Style Card), and one output profile. Start in Safe Run.
 2. **Approve the lock language.** A merchandiser, photographer, or product owner confirms which details are commercially critical.
 3. **Pilot each platform surface.** Record model/interface, date, source type, status, and evidence in the [manual matrix](tests/manual-test-matrix.md). Never transfer a PASS between platforms.
 4. **Batch carefully.** Reuse style and output settings, then send `NEXT PRODUCT` so each source gets a fresh Product Lock.

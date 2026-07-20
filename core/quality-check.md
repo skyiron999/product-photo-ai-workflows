@@ -1,6 +1,6 @@
 # Quality Check
 
-Quality assurance compares three roles side by side: the original product source for fidelity, the style reference or Style Card for visual treatment, and the output for both. Never judge the output from memory alone.
+Quality assurance compares three roles side by side: the original product source for fidelity, the resolved style source (the style reference's dynamic Reference Style Profile, or a named Style Card when no reference is active) for visual treatment, and the output for both. Never judge the output from memory alone.
 
 ## Product checks against source
 

@@ -12,6 +12,8 @@ Choose Instant Run for occasional work or install a custom Gem for repeated batc
 4. Upload one or more original product photos and identify them as product sources.
 5. Send a command such as `SAFE RUN ECOMMERCE` or `FAST RUN BOTH`.
 
+With a reference attached, confirm that the lock sheet says `Style source: REFERENCE IMAGE` and `Style Card: NONE — reference-driven`. A named Style Card is only a fallback when no reference is active or you explicitly request one.
+
 ## Path 2 — Install Once as a Gem
 
 Custom Gems are created and edited in the Gemini web app; the resulting Gem can be available in other supported Gemini surfaces.
@@ -24,7 +26,7 @@ Custom Gems are created and edited in the Gemini web app; the resulting Gem can 
    - [Product Modules](../../bundles/knowledge-products.md)
    - [Style Cards](../../bundles/knowledge-styles.md)
    - [Output Profiles](../../bundles/knowledge-outputs.md)
-   This stays below Gemini's 10-attachment upload batch limit. Do not upload both bundles and individual source modules.
+   This stays below Gemini's 10-attachment upload batch limit. The Style Cards bundle remains a no-reference fallback and does not override an uploaded reference. Do not upload both bundles and individual source modules.
 5. Preview with a non-critical product. Verify that the Gem asks for role confirmation when uploads are unlabeled and does not borrow reference objects.
 6. Save the Gem. When this repository changes, replace affected generated bundles and update the instructions.
 

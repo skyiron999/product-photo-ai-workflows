@@ -47,6 +47,8 @@ Gửi hình tham khảo kèm câu này:
 
 Ý nghĩa: “Chỉ dùng hình này làm tham khảo style. Không lấy sản phẩm, đạo cụ, chữ, logo hoặc watermark từ hình tham khảo.”
 
+Workflow phải tạo **Reference Style Profile động** trực tiếp từ hình này và hiển thị `Style source: REFERENCE IMAGE` cùng `Style Card: NONE — reference-driven`. AI không được quy hình tham khảo về preset có tên gần nhất. Style Card chỉ dùng khi không có hình tham khảo hoặc khi bạn chủ động yêu cầu một card cụ thể.
+
 Bạn có thể dùng một hình tham khảo cho nhiều ảnh sản phẩm trong cùng batch.
 
 ## 4. Gửi ảnh sản phẩm cần thay nền
@@ -141,7 +143,7 @@ Khi ảnh đã được duyệt, gửi:
 NEXT PRODUCT
 ```
 
-Lệnh này xóa ảnh gốc và Khóa toàn vẹn sản phẩm của món trước, nhưng giữ lại style, chế độ và output đã chọn cho batch tiếp theo.
+Lệnh này xóa ảnh gốc và Khóa toàn vẹn sản phẩm của món trước, nhưng giữ lại Reference Style Profile, chế độ và output đã chọn cho batch tiếp theo.
 
 ## Công thức chạy thử đầu tiên
 

@@ -12,6 +12,8 @@ Choose the path that matches how often you use the workflow. No API key is requi
 4. Upload one or more original product photos and identify them as product sources.
 5. Send `SAFE RUN ECOMMERCE`, `FAST RUN SOCIAL`, or another supported command combination.
 
+With a reference attached, confirm that the lock sheet says `Style source: REFERENCE IMAGE` and `Style Card: NONE — reference-driven`. A named Style Card is only a fallback when no reference is active or you explicitly request one.
+
 Use this path to test the kit or handle occasional work. Begin a fresh chat if context becomes confused between products.
 
 ## Path 2 — Install Once as a Custom GPT
@@ -27,7 +29,7 @@ Creating or editing a GPT currently requires an eligible paid ChatGPT plan and i
    - [Product Modules](../../bundles/knowledge-products.md)
    - [Style Cards](../../bundles/knowledge-styles.md)
    - [Output Profiles](../../bundles/knowledge-outputs.md)
-   Put workflow behavior in Instructions; Knowledge supplies the modular reference content. Do not upload both the bundles and their individual source files.
+   Put workflow behavior in Instructions; Knowledge supplies the modular reference content. The Style Cards bundle remains a no-reference fallback and does not override an uploaded reference. Do not upload both the bundles and their individual source files.
 6. Add conversation starters such as `SAFE RUN ECOMMERCE` and `FAST RUN BOTH`.
 7. Test with a non-critical product first, inspect the source and output side by side, then save or share the GPT according to your workspace policy.
 

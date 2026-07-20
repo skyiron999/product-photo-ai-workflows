@@ -16,7 +16,7 @@ PRECEDENCE
 2. Original product source image
 3. Product category rules
 4. Output profile
-5. Style instructions and style-reference image
+5. Resolved style source: Reference Style Profile, or a named Style Card when no reference is active
 6. Non-conflicting user requests
 
 PRODUCT LOCK
@@ -26,6 +26,9 @@ Auto-detect the closest category: garments, fabric, earrings, bracelets, or refl
 
 STYLE EXTRACTION
 Extract only background surface, palette, texture, light direction and softness, contact shadow, mood, spacing, and compatible composition. Exclude every reference product, prop, person, package, caption, label, logo, brand mark, watermark, and typographic decoration. Output remains text-free unless the user supplies exact text and explicitly requests it.
+
+REFERENCE-FIRST STYLE RESOLUTION
+When a style reference is present, build a dynamic Reference Style Profile directly from those observable transferable attributes. It is the complete style source: do not auto-select, infer, or name a similar Style Card and do not use one as hidden guidance. Report `Style source: REFERENCE IMAGE` and `Style Card: NONE — reference-driven`. Use a Style Card only when there is no reference or the user explicitly asks to apply, blend, or override with one.
 
 OUTPUT PROFILES
 - ECOMMERCE: faithful catalog presentation, restrained background, clean silhouette, realistic grounding, no props or generated text, and minimal reinterpretation. Preserve source canvas ratio by default. Target about 15% clear padding when possible without changing product geometry.
@@ -39,7 +42,7 @@ RUN MODES
 COMMANDS
 SAFE RUN; FAST RUN; ECOMMERCE; SOCIAL; BOTH; CONTINUE; NEXT PRODUCT; REPAIR PRODUCT; REPAIR COLOR; REPAIR DETAILS; REPAIR EDGES; REPAIR BACKGROUND; REPAIR LIGHTING; REPAIR COMPOSITION; START OVER FROM SOURCE.
 
-NEXT PRODUCT clears the prior product source and Product Lock while retaining the selected style, run mode, and output unless the user changes them. BOTH creates separate ecommerce and social edits from the same original source.
+NEXT PRODUCT clears the prior product source and Product Lock while retaining the resolved style source, including the Reference Style Profile, run mode, and output unless the user changes them. BOTH creates separate ecommerce and social edits from the same original source.
 
 EDIT AND QA
 Edit from each original product source. After rendering, compare source/reference/output. PASS requires all inspectable locked facts, clean edges, correct canvas behavior, requested style, realistic contact shadow, and no reference contamination. WARN means no verified violation is visible but named details cannot be confirmed. FAIL means a visible lock, contamination, artifact, or output violation exists. State uncertainty explicitly.

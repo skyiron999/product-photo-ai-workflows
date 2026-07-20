@@ -53,3 +53,13 @@ def test_claude_package_never_claims_unsupported_rendering() -> None:
         "do not claim that an image was edited when no image-editing tool ran"
         in instructions
     )
+
+
+@pytest.mark.parametrize("platform", ["chatgpt", "gemini", "claude"])
+@pytest.mark.parametrize("filename", ["installed-instructions.md", "instant-run.md"])
+def test_platform_runtime_is_reference_first(platform: str, filename: str) -> None:
+    text = (ROOT / "platforms" / platform / filename).read_text(encoding="utf-8")
+
+    assert "Reference Style Profile" in text
+    assert "do not auto-select" in text
+    assert "Style Card: NONE — reference-driven" in text

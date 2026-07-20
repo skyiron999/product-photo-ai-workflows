@@ -61,3 +61,13 @@ def test_protocol_confirms_unlabeled_image_roles() -> None:
     assert "simultaneous unlabeled uploads" in text
     assert "require confirmation before editing" in text
     assert "do not report a numeric confidence percentage" in text
+
+
+def test_reference_image_is_primary_style_source_without_automatic_style_card() -> None:
+    protocol = (ROOT / "core/workflow-protocol.md").read_text(encoding="utf-8")
+    safe_run = (ROOT / "core/safe-run.md").read_text(encoding="utf-8")
+
+    assert "Reference Style Profile" in protocol
+    assert "do not select, infer, or name a Style Card" in protocol
+    assert "Style source: REFERENCE IMAGE" in safe_run
+    assert "Style Card: NONE — reference-driven" in safe_run

@@ -66,6 +66,23 @@ def test_each_platform_has_a_complete_vietnamese_setup_guide() -> None:
         assert "instant-run.md" in vietnamese
 
 
+def test_google_flow_has_a_complete_vietnamese_setup_guide() -> None:
+    english = (ROOT / "platforms/google-flow/setup.md").read_text(encoding="utf-8")
+    vietnamese = (ROOT / "platforms/google-flow/setup.vi.md").read_text(
+        encoding="utf-8"
+    )
+    assert len(vietnamese) >= len(english) * 0.65
+    assert "Tiếng Việt" in vietnamese
+    for filename in (
+        "builder-prompt.md",
+        "repair-prompts.md",
+        "acceptance-checklist.md",
+        "limitations.md",
+    ):
+        assert filename in english
+        assert filename in vietnamese
+
+
 def test_quickstarts_link_to_each_other() -> None:
     english = (ROOT / "QUICKSTART.md").read_text(encoding="utf-8")
     vietnamese = (ROOT / "QUICKSTART.vi.md").read_text(encoding="utf-8")

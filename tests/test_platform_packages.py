@@ -10,12 +10,25 @@ PLATFORM_FILES = {
     "installed-instructions.md",
     "limitations.md",
 }
+GOOGLE_FLOW_FILES = {
+    "builder-prompt.md",
+    "repair-prompts.md",
+    "acceptance-checklist.md",
+    "setup.md",
+    "setup.vi.md",
+    "limitations.md",
+}
 
 
 @pytest.mark.parametrize("platform", ["chatgpt", "gemini", "claude"])
 def test_platform_package_is_complete(platform: str) -> None:
     package = ROOT / "platforms" / platform
     assert {path.name for path in package.glob("*.md")} == PLATFORM_FILES
+
+
+def test_google_flow_package_is_complete() -> None:
+    package = ROOT / "platforms" / "google-flow"
+    assert {path.name for path in package.glob("*.md")} == GOOGLE_FLOW_FILES
 
 
 def test_chatgpt_installed_instructions_include_core_safety_commands() -> None:

@@ -146,3 +146,37 @@ def test_google_flow_limitations_do_not_overpromise_runtime_features() -> None:
         "pixel-exact",
     ):
         assert phrase in text
+
+
+def test_google_flow_repair_prompts_are_scoped() -> None:
+    text = (ROOT / "platforms/google-flow/repair-prompts.md").read_text(
+        encoding="utf-8"
+    )
+    for heading in (
+        "## Repair role contamination",
+        "## Repair Product Lock",
+        "## Repair Reference-first and Strict Match",
+        "## Repair Single/Batch isolation",
+        "## Repair source-first retry",
+        "## Repair download claims",
+        "## Repair UI separation",
+    ):
+        assert heading in text
+    assert "Preserve all unrelated working behavior" in text
+
+
+def test_google_flow_acceptance_checklist_covers_high_risk_cases() -> None:
+    text = (ROOT / "platforms/google-flow/acceptance-checklist.md").read_text(
+        encoding="utf-8"
+    )
+    for phrase in (
+        "patterned garment or fabric",
+        "reflective jewelry",
+        "different product",
+        "typography or logo",
+        "at least three distinct products",
+        "Failure of one item",
+        "Retry from Source",
+        "NOT RUN",
+    ):
+        assert phrase in text

@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Added
 
 - Optional `STRICT MATCH` and `STRICT MATCH OFF` commands for maximum reference-background adherence with mandatory non-pixel-exact disclosure.
+- A self-contained Google Flow Tool Builder package with Single mode, experimental isolated Batch mode for 2–20 products, scoped repair prompts, bilingual setup guides, and an evidence-based acceptance checklist.
 
 ### Changed
 

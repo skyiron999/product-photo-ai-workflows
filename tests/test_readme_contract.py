@@ -43,13 +43,13 @@ def test_vietnamese_readme_is_not_a_short_stub() -> None:
 
 def test_quickstart_links_all_platforms() -> None:
     text = (ROOT / "QUICKSTART.md").read_text(encoding="utf-8")
-    for platform in ("chatgpt", "gemini", "claude"):
+    for platform in ("chatgpt", "gemini", "claude", "google-flow"):
         assert f"platforms/{platform}/setup.md" in text
 
 
 def test_vietnamese_quickstart_links_vietnamese_platform_guides() -> None:
     text = (ROOT / "QUICKSTART.vi.md").read_text(encoding="utf-8")
-    for platform in ("chatgpt", "gemini", "claude"):
+    for platform in ("chatgpt", "gemini", "claude", "google-flow"):
         assert f"platforms/{platform}/setup.vi.md" in text
 
 
@@ -95,3 +95,14 @@ def test_readmes_and_quickstarts_document_strict_match_honestly() -> None:
         text = (ROOT / filename).read_text(encoding="utf-8")
         assert "STRICT MATCH" in text
         assert "Pixel-exact guarantee: NO — generative visual match" in text
+
+
+def test_readmes_present_google_flow_as_a_tool_builder_adapter() -> None:
+    english = (ROOT / "README.md").read_text(encoding="utf-8")
+    vietnamese = (ROOT / "README.vi.md").read_text(encoding="utf-8")
+    assert "platforms/google-flow/setup.md" in english
+    assert "Tool Builder" in english
+    assert "BATCH EXPERIMENTAL" in english
+    assert "platforms/google-flow/setup.vi.md" in vietnamese
+    assert "Tool Builder" in vietnamese
+    assert "BATCH EXPERIMENTAL" in vietnamese

@@ -2,15 +2,16 @@
 
 [English](QUICKSTART.md) · **Tiếng Việt**
 
-Bạn không cần API, không cần đổi tên hàng trăm file và không cần biết lập trình. Hướng dẫn này giúp bạn thực hiện lần thay nền sản phẩm đầu tiên theo quy trình có kiểm soát, trực tiếp trong ChatGPT, Gemini hoặc Claude.
+Bạn không cần API, không cần đổi tên hàng trăm file và không cần biết lập trình. Hướng dẫn này giúp bạn bắt đầu quy trình thay nền sản phẩm có kiểm soát trong ChatGPT, Gemini, Claude hoặc Google Flow.
 
 ## 1. Chọn nền tảng
 
 - [Hướng dẫn ChatGPT bằng tiếng Việt](platforms/chatgpt/setup.vi.md)
 - [Hướng dẫn Gemini bằng tiếng Việt](platforms/gemini/setup.vi.md)
 - [Hướng dẫn Claude bằng tiếng Việt](platforms/claude/setup.vi.md)
+- [Hướng dẫn Google Flow Tool Builder bằng tiếng Việt](platforms/google-flow/setup.vi.md)
 
-Hãy dùng nền tảng bạn đã có tài khoản và quen sử dụng. Ba package dùng chung nguyên tắc bảo vệ sản phẩm, nhưng không có nghĩa các model sẽ tạo ảnh giống nhau hoặc có cùng khả năng.
+Hãy dùng nền tảng bạn đã có tài khoản và quen sử dụng. Bốn package dùng chung nguyên tắc bảo vệ sản phẩm, nhưng không có nghĩa các model sẽ tạo ảnh giống nhau hoặc có cùng khả năng.
 
 Lưu ý riêng với Claude: Claude phải kiểm tra xem giao diện hiện tại có công cụ chỉnh sửa ảnh raster thật hay không. Nếu không có, Claude chỉ được phân tích ảnh, lập Khóa toàn vẹn sản phẩm và viết render brief; không được nói rằng ảnh đã được chỉnh sửa.
 
@@ -36,6 +37,12 @@ Phù hợp khi bạn xử lý nhiều sản phẩm mỗi tuần:
 - Claude: tạo một Claude Project.
 
 Bạn dán `installed-instructions.md` vào phần Instructions và upload bốn file đã gom trong [`bundles/`](bundles/README.vi.md) vào Knowledge. Sau đó mỗi lần làm ảnh chỉ cần mở GPT/Gem/Project đã cài.
+
+### Google Flow Tool Builder
+
+Làm theo [hướng dẫn Google Flow tiếng Việt](platforms/google-flow/setup.vi.md), sau đó dán `builder-prompt.md` vào Tool Builder. Không upload bốn Knowledge bundle dành cho hội thoại. Bắt đầu bằng Single; chỉ xem `BATCH EXPERIMENTAL` cho 2–20 job tách biệt là khả năng đã có khi bạn thực sự test được trên runtime hiện tại.
+
+Các phần còn lại của Quickstart này mô tả ba package hội thoại. Người dùng Google Flow tiếp tục theo hướng dẫn cài và [`acceptance-checklist.md`](platforms/google-flow/acceptance-checklist.md); cùng nguyên tắc Product Lock, Reference-first, Strict Match và luôn retry từ ảnh gốc đã được chuyển thành control của Tool.
 
 ## 3. Gửi hình tham khảo style
 

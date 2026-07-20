@@ -9,6 +9,7 @@ Your first controlled product-background edit takes seven decisions, not a custo
 - [ChatGPT setup](platforms/chatgpt/setup.md)
 - [Gemini setup](platforms/gemini/setup.md)
 - [Claude setup](platforms/claude/setup.md)
+- [Google Flow Tool Builder setup](platforms/google-flow/setup.md)
 
 Use the interface you already have. Platform packages share workflow rules but do not promise identical model behavior.
 
@@ -16,8 +17,11 @@ Use the interface you already have. Platform packages share workflow rules but d
 
 - **Instant Run:** paste the platform's `instant-run.md` into a new conversation. Best for evaluation and occasional work.
 - **Install Once:** follow `setup.md` to create a Custom GPT, Gem, or Claude Project and upload the four ready-made files in [`bundles/`](bundles/README.md) as Knowledge. Best for repeated batches.
+- **Google Flow Tool Builder:** follow the [Google Flow setup](platforms/google-flow/setup.md) and paste `builder-prompt.md` into Tool Builder. Do not upload the four conversational Knowledge bundles. Start with Single; treat `BATCH EXPERIMENTAL` for 2–20 isolated jobs as an observed-runtime feature, not a guarantee.
 
 Claude must confirm that the current interface has a real image-editing tool. Without one, it produces analysis and a render brief—not a raster edit.
+
+The remaining seven steps describe the conversational packages. Google Flow users should continue with its setup guide and [`acceptance-checklist.md`](platforms/google-flow/acceptance-checklist.md), where the same Product Lock, Reference-first, Strict Match, and source-first principles are expressed as Tool controls.
 
 ## 3. Attach the style reference
 

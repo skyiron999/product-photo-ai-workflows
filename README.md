@@ -6,7 +6,7 @@ Turn a photographed flat-lay or tabletop product into a controlled new backgroun
 
 [Tiếng Việt](README.vi.md) · [5-minute quickstart](QUICKSTART.md) · [Quickstart tiếng Việt](QUICKSTART.vi.md) · [Manual test policy](tests/manual-test-matrix.md)
 
-This is an open, modular workflow kit for the consumer interfaces of ChatGPT, Gemini, and Claude. It does not require an API, a local image server, or strict filenames. Use it once by pasting an Instant Run prompt, or install it as a reusable Custom GPT, Gem, or Claude Project with [four ready-to-upload Knowledge bundles](bundles/README.md).
+This is an open, modular workflow kit for ChatGPT, Gemini, Claude, and Google Flow. It does not require an API, a local image server, or strict filenames. Conversational interfaces can use an Instant Run prompt or a reusable Custom GPT, Gem, or Claude Project with [four ready-to-upload Knowledge bundles](bundles/README.md). Google Flow uses a separate, self-contained Tool Builder package.
 
 > Version 1 is deliberately focused: flat-lay and tabletop garments, fabric, earrings, bracelets, and reflective accessories. It is not an on-model or ghost-mannequin workflow.
 
@@ -75,9 +75,9 @@ Every output receives `PASS`, `WARN`, `FAIL`, or `MANUAL REVIEW`. Repairs return
 
 For the shortest complete guide, open [QUICKSTART.md](QUICKSTART.md).
 
-The basic conversation is:
+For ChatGPT, Gemini, or Claude, the basic conversation is:
 
-1. Choose ChatGPT, Gemini, or Claude.
+1. Choose ChatGPT, Gemini, or Claude. For Google Flow, follow its [Tool Builder setup](platforms/google-flow/setup.md) instead.
 2. Paste that platform's `instant-run.md`, or install its reusable package once.
 3. Upload the reference with: **“Use this image as the style reference only.”**
 4. Upload a target with: **“This is the original product source. Replace only its background.”**
@@ -96,8 +96,9 @@ The packages share core behavior but do not claim that different image models pr
 | ChatGPT | [Copy-paste prompt](platforms/chatgpt/instant-run.md) | [Custom GPT setup](platforms/chatgpt/setup.md) | Supports uploaded-image editing where ChatGPT Images is available; selections can affect more than the marked area. |
 | Gemini | [Copy-paste prompt](platforms/gemini/instant-run.md) | [Custom Gem setup](platforms/gemini/setup.md) | Supports uploaded and multi-image editing on eligible surfaces; availability varies by account, age, country, language, and plan. |
 | Claude | [Capability-aware prompt](platforms/claude/instant-run.md) | [Claude Project setup](platforms/claude/setup.md) | Must check the current interface. If raster editing is absent, it completes analysis and render-brief stages only and labels them honestly. |
+| Google Flow | [Self-contained builder prompt](platforms/google-flow/builder-prompt.md) | [Tool Builder setup](platforms/google-flow/setup.md) | Builds a reusable Tool with production-oriented Single mode and `BATCH EXPERIMENTAL` for 2–20 isolated product jobs; runtime behavior, credits, downloads, and visual fidelity must be verified. |
 
-Read each package's `limitations.md` before using it for production work. Claude does not automatically export a prompt or redirect the user to another platform in Version 1.
+Read each package's `limitations.md` before using it for production work. Google Flow does not use the four conversational Knowledge bundles, and its requested Tool behavior is not proof that the generated runtime implemented every feature. Claude does not automatically export a prompt or redirect the user to another platform in Version 1.
 
 ## Product and style coverage
 
@@ -154,7 +155,7 @@ The library is designed as a set of modules, not one monolithic prompt.
 - Give the module a unique lowercase kebab-case `id`, semantic version, compatible platforms, recommended products, outputs, and every required section.
 - Run the automated tests and repository validator, then record honest visual evidence on the platforms you actually tested.
 
-Core changes affect every platform and require stricter review than adding a Style Card. Roadmap items such as ghost mannequin, on-model editing, and an optional user-triggered prompt exporter need separate specifications; they are not implied by Version 1.
+Core changes affect every platform package and require stricter review than adding a Style Card. Roadmap items such as ghost mannequin, on-model editing, and an optional user-triggered prompt exporter need separate specifications; they are not implied by Version 1.
 
 ## Contributing and license
 

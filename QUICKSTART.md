@@ -15,7 +15,7 @@ Use the interface you already have. Platform packages share workflow rules but d
 ## 2. Choose Instant Run or Install Once
 
 - **Instant Run:** paste the platform's `instant-run.md` into a new conversation. Best for evaluation and occasional work.
-- **Install Once:** follow `setup.md` to create a Custom GPT, Gem, or Claude Project and add the module files as Knowledge. Best for repeated batches.
+- **Install Once:** follow `setup.md` to create a Custom GPT, Gem, or Claude Project and upload the four ready-made files in [`bundles/`](bundles/README.md) as Knowledge. Best for repeated batches.
 
 Claude must confirm that the current interface has a real image-editing tool. Without one, it produces analysis and a render brief—not a raster edit.
 

@@ -18,9 +18,14 @@ Claude can always perform the visual analysis and workflow assembly stages when 
 1. Open [Claude Projects](https://claude.ai/projects) and create a new project.
 2. Name it **Product Photo Background Studio**.
 3. Choose **Set project instructions**, paste all content from `installed-instructions.md`, and save.
-4. Add the Markdown files from `core/`, `products/`, `styles/`, and `outputs/` to Project Knowledge.
+4. Add these four generated files to Project Knowledge:
+   - [Core workflow](../../bundles/knowledge-core.md)
+   - [Product Modules](../../bundles/knowledge-products.md)
+   - [Style Cards](../../bundles/knowledge-styles.md)
+   - [Output Profiles](../../bundles/knowledge-outputs.md)
+   Do not upload both bundles and individual source modules.
 5. Start a project chat and test a non-critical source. Confirm that Claude states whether an image-editing tool is actually available.
-6. Replace affected Knowledge and instruction files whenever the repository is updated.
+6. Replace affected generated bundles and instruction files whenever the repository is updated.
 
 Anthropic's current guides explain [creating and managing Projects](https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects) and [uploading supported image files](https://support.claude.com/en/articles/8241126-upload-files-to-claude). Account and workspace availability may change; those official pages are authoritative.
 

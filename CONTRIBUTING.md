@@ -44,6 +44,7 @@ Use Python 3.11 or newer, install the development dependencies, and run:
 python -m pip install -e '.[dev]'
 python -m pytest -v
 python tools/validate_templates.py .
+python tools/build_bundles.py --check
 git diff --check
 ```
 

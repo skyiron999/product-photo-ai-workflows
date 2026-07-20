@@ -19,9 +19,14 @@ Custom Gems are created and edited in the Gemini web app; the resulting Gem can 
 1. Open Gemini on the web, open **Gems**, and choose **New Gem**.
 2. Name it **Product Photo Background Studio** or another recognizable name.
 3. Paste the complete content of `installed-instructions.md` into the Gem instructions.
-4. Under **Knowledge**, add the Markdown files from `core/`, `products/`, `styles/`, and `outputs/`.
+4. Under **Knowledge**, upload exactly these four generated files:
+   - [Core workflow](../../bundles/knowledge-core.md)
+   - [Product Modules](../../bundles/knowledge-products.md)
+   - [Style Cards](../../bundles/knowledge-styles.md)
+   - [Output Profiles](../../bundles/knowledge-outputs.md)
+   This stays below Gemini's 10-attachment upload batch limit. Do not upload both bundles and individual source modules.
 5. Preview with a non-critical product. Verify that the Gem asks for role confirmation when uploads are unlabeled and does not borrow reference objects.
-6. Save the Gem. When this repository changes, replace affected Knowledge files and update the instructions.
+6. Save the Gem. When this repository changes, replace affected generated bundles and update the instructions.
 
 Google's current help covers [creating and managing Gems](https://support.google.com/gemini/answer/15146780?hl=en) and [generating or editing uploaded images](https://support.google.com/gemini/answer/14286560?hl=en). Feature placement and account eligibility can change, so use those official pages as the current authority.
 

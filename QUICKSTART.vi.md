@@ -35,7 +35,7 @@ Phù hợp khi bạn xử lý nhiều sản phẩm mỗi tuần:
 - Gemini: tạo một Gem.
 - Claude: tạo một Claude Project.
 
-Bạn dán `installed-instructions.md` vào phần Instructions và thêm các file trong `core/`, `products/`, `styles/`, `outputs/` vào Knowledge. Sau đó mỗi lần làm ảnh chỉ cần mở GPT/Gem/Project đã cài.
+Bạn dán `installed-instructions.md` vào phần Instructions và upload bốn file đã gom trong [`bundles/`](bundles/README.vi.md) vào Knowledge. Sau đó mỗi lần làm ảnh chỉ cần mở GPT/Gem/Project đã cài.
 
 ## 3. Gửi hình tham khảo style
 

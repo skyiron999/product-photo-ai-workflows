@@ -6,7 +6,7 @@ Thay nền cho ảnh flat-lay hoặc tabletop theo cách có kiểm soát, đồ
 
 [English](README.md) · [Bắt đầu trong 5 phút](QUICKSTART.vi.md) · [Quy tắc kiểm thử thủ công](tests/manual-test-matrix.md)
 
-Đây là một bộ workflow mở, dạng module, dùng trực tiếp trong giao diện ChatGPT, Gemini và Claude. Bạn không cần API, không cần server chứa ảnh, cũng không phải đổi tên file theo một quy tắc rườm rà. Có thể dùng ngay bằng cách dán prompt Instant Run, hoặc cài một lần thành Custom GPT, Gem hay Claude Project để xử lý lặp lại.
+Đây là một bộ workflow mở, dạng module, dùng trực tiếp trong giao diện ChatGPT, Gemini và Claude. Bạn không cần API, không cần server chứa ảnh, cũng không phải đổi tên file theo một quy tắc rườm rà. Có thể dùng ngay bằng cách dán prompt Instant Run, hoặc cài một lần thành Custom GPT, Gem hay Claude Project với [bốn Knowledge bundle sẵn sàng upload](bundles/README.vi.md).
 
 > Phiên bản 1 chủ động giới hạn vào sản phẩm flat-lay và tabletop: quần áo, vải, hoa tai, vòng tay và phụ kiện có bề mặt phản chiếu. Chưa bao gồm ảnh người mẫu hoặc ghost mannequin.
 

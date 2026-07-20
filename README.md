@@ -6,7 +6,7 @@ Turn a photographed flat-lay or tabletop product into a controlled new backgroun
 
 [Tiếng Việt](README.vi.md) · [5-minute quickstart](QUICKSTART.md) · [Quickstart tiếng Việt](QUICKSTART.vi.md) · [Manual test policy](tests/manual-test-matrix.md)
 
-This is an open, modular workflow kit for the consumer interfaces of ChatGPT, Gemini, and Claude. It does not require an API, a local image server, or strict filenames. Use it once by pasting an Instant Run prompt, or install it as a reusable Custom GPT, Gem, or Claude Project.
+This is an open, modular workflow kit for the consumer interfaces of ChatGPT, Gemini, and Claude. It does not require an API, a local image server, or strict filenames. Use it once by pasting an Instant Run prompt, or install it as a reusable Custom GPT, Gem, or Claude Project with [four ready-to-upload Knowledge bundles](bundles/README.md).
 
 > Version 1 is deliberately focused: flat-lay and tabletop garments, fabric, earrings, bracelets, and reflective accessories. It is not an on-model or ghost-mannequin workflow.
 

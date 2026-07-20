@@ -22,7 +22,12 @@ Creating or editing a GPT currently requires an eligible paid ChatGPT plan and i
 2. Give it a clear name such as **Product Photo Background Studio**.
 3. Paste the full content of `installed-instructions.md` into **Instructions**.
 4. Enable **Image Generation** under capabilities.
-5. Upload all Markdown files from `core/`, `products/`, `styles/`, and `outputs/` as **Knowledge**. Put workflow behavior in Instructions; Knowledge supplies the modular reference content.
+5. Upload these four generated files as **Knowledge**:
+   - [Core workflow](../../bundles/knowledge-core.md)
+   - [Product Modules](../../bundles/knowledge-products.md)
+   - [Style Cards](../../bundles/knowledge-styles.md)
+   - [Output Profiles](../../bundles/knowledge-outputs.md)
+   Put workflow behavior in Instructions; Knowledge supplies the modular reference content. Do not upload both the bundles and their individual source files.
 6. Add conversation starters such as `SAFE RUN ECOMMERCE` and `FAST RUN BOTH`.
 7. Test with a non-critical product first, inspect the source and output side by side, then save or share the GPT according to your workspace policy.
 
@@ -30,4 +35,4 @@ OpenAI's current guides explain [creating and editing GPTs](https://help.openai.
 
 ## Updating the installation
 
-When the repository changes, replace the affected Knowledge files and update Instructions if `installed-instructions.md` changed. Do not upload `_template.md` contributor templates unless you want the GPT to help author new modules.
+When the repository changes, download and replace the affected generated bundles. Update Instructions if `installed-instructions.md` changed. Do not upload `_template.md` contributor templates unless you want the GPT to help author new modules.
